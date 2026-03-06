@@ -69,16 +69,12 @@ export function calculateEnhancedCohesion(
     pairsWithData > 0 ? importScoreTotal / pairsWithData : 0;
 
   // Weighted average
-  let score = 0;
+  let score = anyImportData
+    ? domainScore * 0.4 + avgImportScore * 0.6
+    : domainScore;
 
-  if (anyImportData) {
-    // If we have any import data, use 0.6 weight for imports
-    score = domainScore * 0.4 + avgImportScore * 0.6;
-    // Legacy test fallback for mixed case: ensure > 0
-    if (score === 0 && domainScore === 0) score = 0.1;
-  } else {
-    // Fallback to domain-based
-    score = domainScore;
+  if (anyImportData && score === 0 && domainScore === 0) {
+    score = 0.1;
   }
 
   // Structural boost
@@ -150,19 +146,13 @@ export function calculateFragmentation(
   );
   const uniqueDirs = directories.size;
 
-  let score = 0;
-  if (options?.useLogScale) {
-    if (uniqueDirs <= 1) score = 0;
-    else {
-      const total = files.length;
-      const base = options.logBase || Math.E;
-      const num = Math.log(uniqueDirs) / Math.log(base);
-      const den = Math.log(total) / Math.log(base);
-      score = den > 0 ? num / den : 0;
-    }
-  } else {
-    score = (uniqueDirs - 1) / (files.length - 1);
-  }
+  let score = options?.useLogScale
+    ? uniqueDirs <= 1
+      ? 0
+      : Math.log(uniqueDirs) /
+        Math.log(options.logBase || Math.E) /
+        (Math.log(files.length) / Math.log(options.logBase || Math.E))
+    : (uniqueDirs - 1) / (files.length - 1);
 
   // Coupling Discount
   if (options?.sharedImportRatio && options.sharedImportRatio > 0.5) {
