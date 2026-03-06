@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { normalizeReport } from '../storage';
+import { ToolName } from '@aiready/core';
 
 // Minimal raw report structure as produced by the CLI
 function makeRawReport(overrides: Record<string, any> = {}) {
@@ -39,7 +40,7 @@ function makeRawReport(overrides: Record<string, any> = {}) {
       metadata: {
         repository: { name: 'test-repo', branch: 'main', commit: 'abc123' },
       },
-      patternDetect: {
+      'pattern-detect': {
         results: [
           {
             fileName: '/tmp/repo-abc/src/utils.ts',
@@ -54,7 +55,7 @@ function makeRawReport(overrides: Record<string, any> = {}) {
           },
         ],
       },
-      contextAnalyzer: {
+      'context-analyzer': {
         results: [
           {
             file: '/tmp/repo-abc/src/dashboard.tsx',
@@ -98,27 +99,27 @@ describe('normalizeReport', () => {
   });
 
   describe('breakdown (repo card subscores)', () => {
-    it('maps pattern-detect → semanticDuplicates in breakdown', () => {
+    it('maps pattern-detect → pattern-detect in breakdown', () => {
       const result = normalizeReport(makeRawReport());
-      expect(result.breakdown.semanticDuplicates).toBeDefined();
-      expect(result.breakdown.semanticDuplicates.score).toBe(85);
+      expect(result.breakdown[ToolName.PatternDetect]).toBeDefined();
+      expect(result.breakdown[ToolName.PatternDetect].score).toBe(85);
     });
 
-    it('maps context-analyzer → contextFragmentation in breakdown', () => {
+    it('maps context-analyzer → context-analyzer in breakdown', () => {
       const result = normalizeReport(makeRawReport());
-      expect(result.breakdown.contextFragmentation).toBeDefined();
-      expect(result.breakdown.contextFragmentation.score).toBe(78);
+      expect(result.breakdown[ToolName.ContextAnalyzer]).toBeDefined();
+      expect(result.breakdown[ToolName.ContextAnalyzer].score).toBe(78);
     });
 
-    it('maps naming-consistency → namingConsistency in breakdown', () => {
+    it('maps naming-consistency → naming-consistency in breakdown', () => {
       const result = normalizeReport(makeRawReport());
-      expect(result.breakdown.namingConsistency).toBeDefined();
-      expect(result.breakdown.namingConsistency.score).toBe(90);
+      expect(result.breakdown[ToolName.NamingConsistency]).toBeDefined();
+      expect(result.breakdown[ToolName.NamingConsistency].score).toBe(90);
     });
 
     it('populates details array from nested issues', () => {
       const result = normalizeReport(makeRawReport());
-      const details = result.breakdown.semanticDuplicates?.details ?? [];
+      const details = result.breakdown[ToolName.PatternDetect]?.details ?? [];
       expect(Array.isArray(details)).toBe(true);
       expect(details.length).toBeGreaterThan(0);
       expect(details[0].message).toContain('Similar');
@@ -126,7 +127,7 @@ describe('normalizeReport', () => {
 
     it('normalizes issue paths using cleanPath (strips /tmp/repo-xxx/)', () => {
       const result = normalizeReport(makeRawReport());
-      const details = result.breakdown.semanticDuplicates?.details ?? [];
+      const details = result.breakdown[ToolName.PatternDetect]?.details ?? [];
       const withAbsPath = details.filter((d: any) =>
         d.location?.file?.startsWith('/tmp/')
       );
@@ -139,8 +140,11 @@ describe('normalizeReport', () => {
       const result = normalizeReport(makeRawReport());
       expect(result.rawOutput).toBeDefined();
       // rawOutput should be the inner rawOutput (source)
-      expect((result.rawOutput as any).patternDetect).toBeDefined();
-      expect((result.rawOutput as any).contextAnalyzer).toBeDefined();
+      const source = result.rawOutput as any;
+      expect(source['pattern-detect'] || source.patternDetect).toBeDefined();
+      expect(
+        source['context-analyzer'] || source.contextAnalyzer
+      ).toBeDefined();
     });
   });
 
@@ -156,6 +160,8 @@ describe('normalizeReport', () => {
       const result = normalizeReport(legacyReport);
       // Should still produce a breakdown object even if it's just scores
       expect(result.breakdown).toBeDefined();
+      // Legacy semanticDuplicates should map to pattern-detect
+      expect(result.breakdown[ToolName.PatternDetect]?.score).toBe(85);
     });
 
     it('does not throw on empty/minimal report', () => {

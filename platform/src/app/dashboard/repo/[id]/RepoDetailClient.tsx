@@ -7,7 +7,7 @@ import PlatformShell from '@/components/PlatformShell';
 import { AlertCircleIcon } from '@/components/Icons';
 import type { Repository, Team, TeamMember } from '@/lib/db';
 import type { AnalysisData } from '@/lib/storage';
-import { ToolName, FRIENDLY_TOOL_NAMES } from '@aiready/core';
+import { ToolName, FRIENDLY_TOOL_NAMES } from '@aiready/core/client';
 import { RepoHeader } from './components/RepoHeader';
 import { RepoDimensions } from './components/RepoDimensions';
 import { IssueFeed } from './components/IssueFeed';

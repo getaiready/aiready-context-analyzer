@@ -1,5 +1,5 @@
 // Types for DynamoDB entities
-import { AnalysisStatus, Severity } from '@aiready/core';
+import { AnalysisStatus, Severity } from '@aiready/core/client';
 
 export interface User {
   id: string;

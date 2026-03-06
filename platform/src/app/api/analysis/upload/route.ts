@@ -19,7 +19,7 @@ import {
 import { planLimits } from '@/lib/plans';
 import { sendAnalysisCompleteEmail } from '@/lib/email';
 import { randomUUID } from 'crypto';
-import { UnifiedReportSchema, AnalysisStatus } from '@aiready/core';
+import { UnifiedReportSchema, AnalysisStatus } from '@aiready/core/client';
 
 // Helper to count runs this month
 async function getRunsThisMonth(userId: string): Promise<number> {

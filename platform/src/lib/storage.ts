@@ -16,7 +16,7 @@ import {
   ListObjectsV2Command,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { ToolName, FRIENDLY_TOOL_NAMES } from '@aiready/core';
+import { ToolName, FRIENDLY_TOOL_NAMES } from '@aiready/core/client';
 
 // Initialize S3 client
 const s3 = new S3Client({ region: process.env.AWS_REGION || 'ap-southeast-2' });
@@ -292,7 +292,7 @@ export function normalizeReport(
   const metadata = source.metadata || {};
   const repo = metadata.repository || source.repository || {};
 
-  // Tool Legacy Mappings (For historical reports)
+  // Tool Legacy Mappings (For historical reports and mapping IssueType to ToolName)
   const legacyMappings: Record<string, string> = {
     // CLI Old Shorthands
     patterns: ToolName.PatternDetect,
@@ -312,6 +312,24 @@ export function normalizeReport(
     documentationHealth: ToolName.DocDrift,
     dependencyHealth: ToolName.DependencyHealth,
     testabilityIndex: ToolName.TestabilityIndex,
+
+    // IssueType -> ToolName mapping
+    'duplicate-pattern': ToolName.PatternDetect,
+    'pattern-inconsistency': ToolName.PatternDetect,
+    'context-fragmentation': ToolName.ContextAnalyzer,
+    'dependency-health': ToolName.DependencyHealth,
+    'circular-dependency': ToolName.ContextAnalyzer,
+    'doc-drift': ToolName.DocDrift,
+    'naming-inconsistency': ToolName.NamingConsistency,
+    'naming-quality': ToolName.NamingConsistency,
+    'architecture-inconsistency': ToolName.NamingConsistency,
+    'magic-literal': ToolName.AiSignalClarity,
+    'boolean-trap': ToolName.AiSignalClarity,
+    'ai-signal-clarity': ToolName.AiSignalClarity,
+    'low-testability': ToolName.TestabilityIndex,
+    'agent-navigation-failure': ToolName.AgentGrounding,
+    'ambiguous-api': ToolName.AiSignalClarity,
+    'change-amplification': ToolName.ChangeAmplification,
   };
 
   const breakdown: any = {};
@@ -334,6 +352,23 @@ export function normalizeReport(
         breakdown[canonicalId].score = item.score || 0;
       }
     });
+  }
+
+  // 1.5 Also check top-level breakdown if it exists (Legacy CLI/Platform format)
+  if (
+    source.breakdown &&
+    typeof source.breakdown === 'object' &&
+    !Array.isArray(source.breakdown)
+  ) {
+    for (const [k, v] of Object.entries(source.breakdown)) {
+      const canonicalId = legacyMappings[k] || k;
+      if (breakdown[canonicalId]) {
+        const score = typeof v === 'number' ? v : (v as any).score;
+        if (typeof score === 'number' && breakdown[canonicalId].score === 0) {
+          breakdown[canonicalId].score = score;
+        }
+      }
+    }
   }
 
   // 2. Populate details from results array (New standardized results format)
@@ -393,24 +428,34 @@ export function normalizeReport(
 
         if (Array.isArray(resultsArray)) {
           resultsArray.forEach((r: any) => {
-            const normalized =
+            const normalizedList =
               typeof r === 'string'
-                ? { message: r, severity: 'major' as const }
-                : { ...r };
+                ? [{ message: r, severity: 'major' as const }]
+                : r.issues && Array.isArray(r.issues)
+                  ? r.issues.map((i: any) => ({
+                      ...i,
+                      location: i.location || {
+                        file: r.fileName || r.file,
+                        line: 1,
+                      },
+                    }))
+                  : [{ ...r }];
 
-            if (normalized.location?.file) {
-              normalized.location.file = cleanPath(
-                normalized.location.file,
-                rootDir
-              );
-            } else if (normalized.file) {
-              normalized.location = {
-                ...normalized.location,
-                file: cleanPath(normalized.file, rootDir),
-              };
-            }
-            breakdown[toolId].details.push(normalized);
-            breakdown[toolId].count++;
+            normalizedList.forEach((normalized: any) => {
+              if (normalized.location?.file) {
+                normalized.location.file = cleanPath(
+                  normalized.location.file,
+                  rootDir
+                );
+              } else if (normalized.file) {
+                normalized.location = {
+                  ...normalized.location,
+                  file: cleanPath(normalized.file, rootDir),
+                };
+              }
+              breakdown[toolId].details.push(normalized);
+              breakdown[toolId].count++;
+            });
           });
         }
         break; // found it
