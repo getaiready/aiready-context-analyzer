@@ -303,23 +303,6 @@ export function normalizeReport(
     testability: ToolName.TestabilityIndex,
     'doc-drift': ToolName.DocDrift,
     'deps-health': ToolName.DependencyHealth,
-    'change-amp': ToolName.ChangeAmplification,
-
-    // Platform Old Keys
-    semanticDuplicates: ToolName.PatternDetect,
-    contextFragmentation: ToolName.ContextAnalyzer,
-    namingConsistency: ToolName.NamingConsistency,
-    documentationHealth: ToolName.DocDrift,
-    dependencyHealth: ToolName.DependencyHealth,
-    testabilityIndex: ToolName.TestabilityIndex,
-
-    // IssueType -> ToolName mapping
-    'duplicate-pattern': ToolName.PatternDetect,
-    'pattern-inconsistency': ToolName.PatternDetect,
-    'context-fragmentation': ToolName.ContextAnalyzer,
-    'dependency-health': ToolName.DependencyHealth,
-    'circular-dependency': ToolName.ContextAnalyzer,
-    'doc-drift': ToolName.DocDrift,
     'naming-inconsistency': ToolName.NamingConsistency,
     'naming-quality': ToolName.NamingConsistency,
     'architecture-inconsistency': ToolName.NamingConsistency,
