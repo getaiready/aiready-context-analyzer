@@ -708,73 +708,19 @@ export function ScanConfigForm({ repoId, initialSettings, onSave }: Props) {
               </div>
 
               <div className="flex flex-col justify-end gap-4">
-                <div
-                  onClick={() => {
-                    const newVal =
-                      !settings.tools?.[ToolName.ContextAnalyzer]
-                        ?.includeNodeModules;
-                    if (newVal) {
-                      setConfirmData({
-                        type: 'node_modules',
-                        title: 'Scan Node Modules?',
-                        message:
-                          'WARNING: Scanning node_modules will exponentially increase scan time, cost, and context window usage. This is rarely needed for standard analysis.',
-                        onConfirm: () => {
-                          setSettings({
-                            ...settings,
-                            tools: {
-                              ...settings.tools,
-                              [ToolName.ContextAnalyzer]: {
-                                ...settings.tools?.[ToolName.ContextAnalyzer],
-                                includeNodeModules: true,
-                              },
-                            },
-                          });
-                          setConfirmData((prev) => ({ ...prev, type: null }));
-                        },
-                      });
-                    } else {
-                      setSettings({
-                        ...settings,
-                        tools: {
-                          ...settings.tools,
-                          [ToolName.ContextAnalyzer]: {
-                            ...settings.tools?.[ToolName.ContextAnalyzer],
-                            includeNodeModules: false,
-                          },
-                        },
-                      });
-                    }
-                  }}
-                  className={`group relative p-3 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
-                    settings.tools?.[ToolName.ContextAnalyzer]
-                      ?.includeNodeModules
-                      ? 'bg-red-500/10 border-red-500/30 text-red-500'
-                      : 'bg-slate-900 border-slate-800 text-slate-500 hover:border-slate-700'
-                  }`}
-                >
+                <div className="group relative p-3 rounded-xl border bg-slate-900/50 border-slate-800 text-slate-600 cursor-not-allowed flex items-center justify-between opacity-60">
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold uppercase flex items-center gap-2">
                       Scan Node Modules
-                      {settings.tools?.[ToolName.ContextAnalyzer]
-                        ?.includeNodeModules && (
-                        <span className="bg-red-500 text-[8px] px-1.5 py-0.5 rounded text-white animate-pulse">
-                          HIGH RISK
-                        </span>
-                      )}
+                      <span className="bg-slate-800 text-[8px] px-1.5 py-0.5 rounded text-slate-500 border border-slate-700">
+                        LOCKED
+                      </span>
                     </span>
                   </div>
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full ${
-                      settings.tools?.[ToolName.ContextAnalyzer]
-                        ?.includeNodeModules
-                        ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'
-                        : 'bg-slate-800'
-                    }`}
-                  />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-800" />
                   <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block w-48 p-3 bg-slate-900 border border-slate-800 rounded-xl text-[10px] text-slate-400 z-50 shadow-2xl normal-case">
-                    Deep-dive into 3rd party dependency source code. WARNING:
-                    Significantly increases scan time and context usage.
+                    Scanning 3rd party source code is disabled to prevent
+                    excessive context window consumption and system timeouts.
                   </div>
                 </div>
 
@@ -1257,7 +1203,7 @@ export function ScanConfigForm({ repoId, initialSettings, onSave }: Props) {
         onConfirm={confirmData.onConfirm}
         title={confirmData.title}
         message={confirmData.message}
-        variant={confirmData.type === 'node_modules' ? 'danger' : 'warning'}
+        variant="warning"
         confirmText="Enable Anyway"
       />
     </div>
