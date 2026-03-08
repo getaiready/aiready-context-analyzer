@@ -121,6 +121,8 @@ export interface RemediationRequest {
   agentStatus?: string;
   prUrl?: string;
   prNumber?: number;
+  priorityScore?: number;
+  rank?: 'P0' | 'P1' | 'P2' | 'P3';
   title: string;
   description: string;
   affectedFiles: string[];

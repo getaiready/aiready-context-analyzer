@@ -33,12 +33,29 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
       const res = await fetch(`/api/repos/${repoId}/remediations`);
       const data = await res.json();
       if (res.ok) {
-        setRemediations(data.remediations);
+        // Sort by priorityScore (descending)
+        const sorted = (data.remediations || []).sort(
+          (a: any, b: any) => (b.priorityScore || 0) - (a.priorityScore || 0)
+        );
+        setRemediations(sorted);
       }
     } catch (err) {
       console.error('Error fetching remediations:', err);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleApprove(id: string) {
+    try {
+      const res = await fetch(`/api/remediate/${id}/approve`, {
+        method: 'POST',
+      });
+      if (res.ok) {
+        fetchRemediations();
+      }
+    } catch (err) {
+      console.error('Error approving remediation:', err);
     }
   }
 
@@ -66,9 +83,14 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
           </div>
           <h3 className="text-xl font-bold text-white">Remediation Queue</h3>
         </div>
-        <span className="text-[10px] font-black uppercase tracking-widest bg-slate-800 px-3 py-1 rounded-full border border-slate-700 text-slate-400">
-          Alpha • Agentic
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-black uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20 text-cyan-400">
+            Managed ROI
+          </span>
+          <span className="text-[10px] font-black uppercase tracking-widest bg-slate-800 px-3 py-1 rounded-full border border-slate-700 text-slate-400">
+            Alpha
+          </span>
+        </div>
       </div>
 
       <div className="p-8">
@@ -97,11 +119,11 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700 text-left flex items-start gap-4"
+                  className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700 text-left flex items-start gap-4 relative"
                 >
                   <div
                     className={`p-2 rounded-lg shrink-0 ${
-                      rem.risk === 'critical'
+                      rem.risk === 'critical' || rem.risk === 'high'
                         ? 'bg-red-500/10 text-red-500'
                         : 'bg-blue-500/10 text-blue-500'
                     }`}
@@ -111,7 +133,7 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                     ) : (
                       <Icon
                         name={
-                          rem.risk === 'critical'
+                          rem.risk === 'critical' || rem.risk === 'high'
                             ? 'AlertTriangleIcon'
                             : 'InfoIcon'
                         }
@@ -121,9 +143,22 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                   </div>
                   <div className="space-y-1 flex-1">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-bold text-white">
-                        {rem.title}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-bold text-white">
+                          {rem.title}
+                        </p>
+                        {rem.rank && (
+                          <span
+                            className={`text-[9px] font-black px-1.5 py-0.5 rounded ${
+                              rem.rank === 'P0'
+                                ? 'bg-amber-500 text-slate-950'
+                                : 'bg-slate-700 text-slate-300'
+                            }`}
+                          >
+                            {rem.rank}
+                          </span>
+                        )}
+                      </div>
                       <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-slate-700 text-slate-400">
                         {rem.status}
                       </span>
@@ -135,12 +170,12 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                     <div className="pt-2 flex items-center gap-3">
                       <span
                         className={`text-[9px] font-black uppercase p-1 rounded border ${
-                          rem.risk === 'critical'
+                          rem.risk === 'critical' || rem.risk === 'high'
                             ? 'bg-red-500/10 text-red-500 border-red-500/20'
                             : 'bg-blue-500/10 text-blue-500 border-blue-500/20'
                         }`}
                       >
-                        {rem.risk}
+                        {rem.risk} Risk
                       </span>
                       {rem.prUrl && (
                         <Link
@@ -155,18 +190,35 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                     </div>
                   </div>
 
-                  {rem.status === 'pending' && (
-                    <button
-                      onClick={() => handleRemediate(rem.id)}
-                      className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-500 rounded-lg hover:bg-cyan-500 group transition-all hover:text-slate-950"
-                    >
-                      <span className="text-[10px] font-bold">Fix with AI</span>
-                      <Icon
-                        name="ArrowRightIcon"
-                        className="w-3 h-3 group-hover:translate-x-0.5 transition-transform"
-                      />
-                    </button>
-                  )}
+                  <div className="ml-auto flex flex-col gap-2">
+                    {rem.status === 'pending' &&
+                      (rem.risk === 'high' || rem.risk === 'critical') && (
+                        <button
+                          onClick={() => handleApprove(rem.id)}
+                          className="flex items-center gap-2 px-3 py-1.5 bg-amber-500 text-slate-950 rounded-lg hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/10"
+                        >
+                          <span className="text-[10px] font-black uppercase">
+                            Approve Fix
+                          </span>
+                          <Icon name="CheckIcon" className="w-3 h-3" />
+                        </button>
+                      )}
+                    {rem.status === 'pending' &&
+                      (rem.risk === 'low' || rem.risk === 'medium') && (
+                        <button
+                          onClick={() => handleRemediate(rem.id)}
+                          className="flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-500 rounded-lg hover:bg-cyan-500 group transition-all hover:text-slate-950"
+                        >
+                          <span className="text-[10px] font-bold">
+                            Fix with AI
+                          </span>
+                          <Icon
+                            name="ArrowRightIcon"
+                            className="w-3 h-3 group-hover:translate-x-0.5 transition-transform"
+                          />
+                        </button>
+                      )}
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
