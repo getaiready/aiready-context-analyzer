@@ -241,8 +241,9 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                     )}
                     {rem.status === 'pending' && rem.rank === 'P0' && (
                       <button
-                        onClick={() => handleSwarm(rem.id)}
-                        className="flex items-center gap-2 px-3 py-1.5 bg-purple-500 text-white rounded-lg hover:bg-purple-400 transition-all shadow-lg shadow-purple-500/10"
+                        disabled
+                        title="Autonomous Swarm Remediation is coming soon"
+                        className="flex items-center gap-2 px-3 py-1.5 bg-purple-500/50 text-white/50 rounded-lg cursor-not-allowed shadow-lg"
                       >
                         <span className="text-[10px] font-black uppercase">
                           Trigger Swarm
@@ -266,16 +267,14 @@ export function RemediationQueue({ repoId, hasIssues }: RemediationQueueProps) {
                     {rem.status === 'pending' &&
                       (rem.risk === 'low' || rem.risk === 'medium') && (
                         <button
-                          onClick={() => handleRemediate(rem.id)}
-                          className="flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-500 rounded-lg hover:bg-cyan-500 group transition-all hover:text-slate-950"
+                          disabled
+                          title="AI Remediation is coming soon"
+                          className="flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-500/50 rounded-lg cursor-not-allowed group transition-all"
                         >
                           <span className="text-[10px] font-bold">
                             Fix with AI
                           </span>
-                          <Icon
-                            name="ArrowRightIcon"
-                            className="w-3 h-3 group-hover:translate-x-0.5 transition-transform"
-                          />
+                          <Icon name="ArrowRightIcon" className="w-3 h-3" />
                         </button>
                       )}
                   </div>
