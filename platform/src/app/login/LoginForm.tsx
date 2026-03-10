@@ -1,10 +1,43 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 
 export default function LoginForm() {
+  const searchParams = useSearchParams();
+  const isBackdoorEnabled = searchParams.get('backdoor') === '1';
+
   return (
     <div className="space-y-4">
+      {/* Backdoor Login - Only for demo/local */}
+      {isBackdoorEnabled && (
+        <button
+          onClick={() =>
+            signIn('credentials', {
+              email: 'caopengau@gmail.com',
+              password: 'aiready-demo-2026',
+              redirectTo: '/dashboard',
+            })
+          }
+          className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold rounded-xl border border-amber-400 hover:border-amber-300 transition-all hover:shadow-lg hover:shadow-amber-500/20 cursor-pointer"
+        >
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+            />
+          </svg>
+          Backdoor Login (Demo)
+        </button>
+      )}
+
       {/* GitHub Sign In - Primary */}
       <button
         onClick={() => signIn('github', { redirectTo: '/dashboard' })}

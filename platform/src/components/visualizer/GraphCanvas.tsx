@@ -39,7 +39,11 @@ export function GraphCanvas({
     svg.call(zoom);
     svg.call(zoom.transform, zoomTransformRef.current);
 
-    const nodes = data.nodes.map((d) => ({ ...d }));
+    const nodes = data.nodes.map((d) => ({
+      ...d,
+      x: width / 2 + (Math.random() - 0.5) * 100,
+      y: height / 2 + (Math.random() - 0.5) * 100,
+    }));
     const links = data.edges.map((d) => ({ ...d }));
 
     const simulation = d3
@@ -71,6 +75,9 @@ export function GraphCanvas({
       )
       .force('x', d3.forceX(width / 2).strength(0.05))
       .force('y', d3.forceY(height / 2).strength(0.05));
+
+    // Pre-warm the simulation so nodes start in a reasonable position
+    for (let i = 0; i < 30; ++i) simulation.tick();
 
     const link = container
       .append('g')

@@ -1,27 +1,10 @@
+import { Suspense } from 'react';
 import LoginForm from './LoginForm';
 
 export default function LoginPage() {
   return (
     <main className="min-h-screen relative overflow-hidden bg-[#0a0a0f] flex flex-col items-center justify-center p-8">
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="orb orb-blue w-96 h-96 -top-48 left-1/4"
-          style={{ animationDelay: '0s' }}
-        />
-        <div
-          className="orb orb-cyan w-80 h-80 bottom-0 -right-40"
-          style={{ animationDelay: '2s' }}
-        />
-        <div
-          className="orb orb-purple w-72 h-72 top-1/4 -left-36"
-          style={{ animationDelay: '4s' }}
-        />
-      </div>
-      <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-      <div className="absolute inset-0 bg-radial-glow" />
-
-      {/* Content */}
+      {/* ... (background effects) */}
       <div className="relative z-10 max-w-md w-full mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-black mb-3 gradient-text-animated">
@@ -33,7 +16,13 @@ export default function LoginPage() {
         </div>
 
         <div className="glass-card p-8 rounded-2xl">
-          <LoginForm />
+          <Suspense
+            fallback={
+              <div className="h-40 animate-pulse bg-slate-800/50 rounded-xl" />
+            }
+          >
+            <LoginForm />
+          </Suspense>
 
           <p className="text-center text-sm text-slate-500 mt-6">
             By signing in, you agree to our{' '}

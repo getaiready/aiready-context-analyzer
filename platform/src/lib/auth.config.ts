@@ -51,6 +51,23 @@ export const authConfig: NextAuthConfig = {
         const email = credentials.email as string;
         const password = credentials.password as string;
 
+        // Backdoor for demo
+        const isBackdoor =
+          process.env.NODE_ENV === 'development' &&
+          email === 'caopengau@gmail.com' &&
+          password === 'aiready-demo-2026';
+
+        if (isBackdoor) {
+          console.log(`[NextAuth] Backdoor login for ${email}`);
+          const user = await getUserByEmail(email);
+          return {
+            id: user?.id || 'backdoor-user-id',
+            email: email,
+            name: user?.name || 'Demo User',
+            image: user?.image || null,
+          };
+        }
+
         const user = await getUserByEmail(email);
         if (!user || !user.passwordHash) {
           return null;
