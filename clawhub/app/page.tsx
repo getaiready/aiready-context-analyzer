@@ -76,53 +76,59 @@ export default function ClawHubPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-48 overflow-hidden border-b border-white/5 bg-[#0a0a0a]">
-        {/* Cinematic Background Image - ABSOLUTE VISIBILITY TEST */}
-        <div className="absolute inset-0 z-0 opacity-100">
+      <section className="relative pt-32 pb-48 overflow-hidden border-b border-white/5">
+        {/* Cinematic Background Image - OPTIMIZED FOR READABILITY */}
+        <div className="absolute inset-0 -z-10 bg-[#0a0a0a]">
           <Image
             src="/hero.png"
             alt="Hero Background"
             fill
-            className="object-cover"
+            className="object-cover opacity-50 brightness-[0.7] saturate-[0.8]"
             priority
           />
+          {/* Subtle radial mask to clear area for text */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(10,10,10,0.7)_0%,_#0a0a0a_80%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
         </div>
 
-        <div className="container mx-auto px-4 text-center relative">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm border border-cyber-purple/40 bg-cyber-purple/10 text-cyber-purple text-[10px] font-mono uppercase tracking-[0.3em] mb-12 shadow-[0_0_30px_rgba(188,0,255,0.15)] backdrop-blur-md">
-            <Activity className="w-3 h-3" />
-            <span>Autonomous Infrastructure Synthesis</span>
-          </div>
+        <div className="container mx-auto px-4 relative flex flex-col items-center text-center">
+          {/* Content Wrapper with subtle glass backdrop for text legibility over busy image */}
+          <div className="relative z-10 p-8 md:p-12 rounded-2xl max-w-5xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm border border-cyber-purple/40 bg-cyber-purple/10 text-cyber-purple text-[10px] font-mono uppercase tracking-[0.3em] mb-12 shadow-[0_0_30px_rgba(188,0,255,0.15)] backdrop-blur-sm">
+              <Activity className="w-3 h-3" />
+              <span>Autonomous Infrastructure Synthesis</span>
+            </div>
 
-          <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-10 bg-gradient-to-r from-cyber-blue via-white to-cyber-purple bg-clip-text text-transparent leading-[1.2] pb-4 drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
-            Never-Dying,
-            <br />
-            <span className="italic">Self-Evolving</span> Claw
-          </h1>
+            <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-10 bg-gradient-to-r from-cyber-blue via-white to-cyber-purple bg-clip-text text-transparent leading-[1.2] pb-4 drop-shadow-[0_10px_60px_rgba(0,0,0,1)]">
+              Never-Dying,
+              <br />
+              <span className="italic">Self-Evolving</span> Claw
+            </h1>
 
-          <p className="text-xl text-zinc-100 max-w-3xl mx-auto mb-14 leading-relaxed font-light drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-            ClawHub is the world&apos;s first autonomous agentic system built on
-            AWS Ion. It interprets intent, synthesizes infrastructure, and{' '}
-            <span className="text-cyber-blue font-mono text-sm underline decoration-cyber-blue/30 underline-offset-4">
-              persists mutations
-            </span>{' '}
-            back to source control while you sleep.
-          </p>
+            <p className="text-xl text-zinc-100 max-w-3xl mx-auto mb-14 leading-relaxed font-light drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              ClawHub is the world&apos;s first autonomous agentic system built
+              on AWS Ion. It interprets intent, synthesizes infrastructure, and{' '}
+              <span className="text-cyber-blue font-mono text-sm underline decoration-cyber-blue/30 underline-offset-4 font-bold">
+                persists mutations
+              </span>{' '}
+              back to source control while you sleep.
+            </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <Link
-              href="https://github.com/caopengau/serverlessclaw"
-              className="px-12 py-5 rounded-sm bg-cyber-blue hover:bg-cyber-blue/90 text-black transition-all font-black uppercase tracking-widest flex items-center gap-3 group shadow-[0_0_40px_rgba(0,224,255,0.25)]"
-            >
-              Initialize Node
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="#waitlist"
-              className="px-12 py-5 rounded-sm border border-white/10 bg-white/5 hover:bg-white/10 transition-all font-bold uppercase tracking-widest text-[14px]"
-            >
-              Managed Beta Access
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+              <Link
+                href="https://github.com/caopengau/serverlessclaw"
+                className="px-12 py-5 rounded-sm bg-cyber-blue hover:bg-cyber-blue/90 text-black transition-all font-black uppercase tracking-widest flex items-center gap-3 group shadow-[0_0_40px_rgba(0,224,255,0.3)]"
+              >
+                Initialize Node
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="#waitlist"
+                className="px-12 py-5 rounded-sm border border-white/10 bg-white/5 hover:bg-white/10 transition-all font-bold uppercase tracking-widest text-[14px]"
+              >
+                Managed Beta Access
+              </Link>
+            </div>
           </div>
         </div>
       </section>
