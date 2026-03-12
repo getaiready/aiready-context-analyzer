@@ -7,6 +7,7 @@ include $(MAKEFILE_DIR)/Makefile.shared.mk
 
 .PHONY: deploy-landing deploy-landing-prod deploy-landing-remove landing-logs landing-verify landing-cleanup
 .PHONY: deploy-platform deploy-platform-prod deploy-platform-remove platform-logs platform-verify
+.PHONY: deploy-clawhub deploy-clawhub-dev deploy-clawhub-prod clawhub-verify
 
 ##@ Deployment
 
@@ -74,6 +75,47 @@ landing-logs: ## Show landing page logs (requires SST dashboard)
 	@$(call log_step,Opening SST dashboard for logs)
 	@cd landing && \
 		AWS_PROFILE=$(AWS_PROFILE) AWS_REGION=$(AWS_REGION) sst dev
+
+##@ ClawHub Deployment
+
+deploy-clawhub: verify-aws-account ## Deploy ClawHub to AWS (default stage)
+	@$(call log_step,Deploying ClawHub to AWS)
+	@cd clawhub && \
+		set -a && [ -f .env ] && . ./.env || true && set +a && \
+		export AWS_PROFILE=$${AWS_PROFILE:-$(AWS_PROFILE)} && \
+		export AWS_REGION=$${AWS_REGION:-$(AWS_REGION)} && \
+		sst deploy --yes
+	@$(call log_success,ClawHub deployed)
+
+deploy-clawhub-dev: verify-aws-account ## Deploy ClawHub to AWS (stage: dev)
+	@$(call log_step,Deploying ClawHub to AWS (stage: dev))
+	@cd clawhub && \
+		set -a && [ -f .env ] && . ./.env || true && set +a && \
+		export AWS_PROFILE=$${AWS_PROFILE:-$(AWS_PROFILE)} && \
+		export AWS_REGION=$${AWS_REGION:-$(AWS_REGION)} && \
+		sst deploy --stage dev --yes
+	@$(call log_success,ClawHub deployed to stage: dev)
+
+deploy-clawhub-prod: verify-aws-account ## Deploy ClawHub to AWS (production)
+	@$(call log_step,Deploying ClawHub to AWS (production))
+	@echo "$(YELLOW)⚠️  Deploying to PRODUCTION$(NC)"
+	@cd clawhub && \
+		set -a && [ -f .env ] && . ./.env || true && set +a && \
+		export AWS_PROFILE=$${AWS_PROFILE:-$(AWS_PROFILE)} && \
+		export AWS_REGION=$${AWS_REGION:-$(AWS_REGION)} && \
+		sst deploy --stage production --yes
+	@$(call log_success,ClawHub deployed to production)
+	@$(MAKE) -f $(MAKEFILE_DIR)/Makefile.deploy.mk clawhub-verify
+
+clawhub-verify: ## Verify ClawHub is accessible
+	@$(call log_step,Verifying ClawHub is accessible)
+	@DOMAIN=$$( [ "$$STAGE" = "production" ] && echo "clawhub.getaiready.dev" || echo "dev.clawhub.getaiready.dev" ); \
+	if curl -fsS -o /dev/null "https://$$DOMAIN" >/dev/null 2>&1; then \
+		echo "$(GREEN)✓ ClawHub is live and responding$(NC)"; \
+		echo "$(CYAN)🌐 URL: https://$$DOMAIN$(NC)"; \
+	else \
+		echo "$(YELLOW)⚠️  ClawHub may still be deploying$(NC)"; \
+	fi
 
 ##@ Platform Deployment
 
