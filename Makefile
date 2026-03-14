@@ -75,10 +75,10 @@ pre-commit: ## Run pre-commit checks (lint-staged, build, check)
 pre-push: ## Run pre-push checks (AIReady scan)
 	@if [ "$$SKIP_PRE_PUSH" = "true" ]; then \
 		$(call log_info,⏭️  Skipping AIReady pre-push scan (SKIP_PRE_PUSH=true)); \
-		exit 0; \
+	else \
+		$(call log_step,🚀 Running AIReady pre-push scan (Threshold: 80)...); \
+		node packages/cli/dist/cli.js scan . --threshold 80; \
 	fi
-	@$(call log_step,🚀 Running AIReady pre-push scan (Threshold: 80)...)
-	@node packages/cli/dist/cli.js scan . --threshold 80
 
 lint-staged: ## Run lint-staged on changed files
 	@$(call log_info,Running lint-staged...)
