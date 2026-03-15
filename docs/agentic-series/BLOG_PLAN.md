@@ -30,9 +30,11 @@ This series explores the evolution of software engineering from human-centric "r
   - **Focus**: Turning Technical Debt into a Token Budget. Linking Fragmentation Scores to real-world model pricing.
   - **Draft**: [part-8-the-economic-moat.md](../../landing/blog-posts/part-8-the-economic-moat.md)
 
-- [ ] **Post 4: The Neural Spine: Event-Driven Orchestration**
-  - **Status**: Planned
+- [/] **Post 4: The Neural Spine: Event-Driven Orchestration**
+  - **Status**: Drafted
   - **Focus**: Why synchronous "agent loops" fail and why an asynchronous backbone (EventBridge) is required.
+  - **Draft**: [agentic-series-part-4-the-neural-spine.md](../../landing/blog-posts/agentic-series-part-4-the-neural-spine.md)
+  - **TSX**: [clawmore/app/blog/eventbridge-the-neural-spine/page.tsx](../../clawmore/app/blog/eventbridge-the-neural-spine/page.tsx)
 
 - [ ] **Post 4: Closing the Evolution Loop: Git as a Runtime**
   - **Status**: Planned

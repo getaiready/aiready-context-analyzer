@@ -5,16 +5,17 @@ include makefiles/Makefile.shared.mk
 
 .PHONY: \
 	check-all fix \
-	lint lint-core lint-pattern-detect \
-	lint-fix lint-fix-core lint-fix-pattern-detect \
-	format format-core format-pattern-detect \
-	format-check format-check-core format-check-pattern-detect \
-	type-check type-check-core type-check-pattern-detect type-check-all
+	lint lint-fix format format-check \
+	type-check type-check-all
 
 # Dynamically generate leaf targets from ALL_SPOKES
 FORMAT_LEAF := $(foreach spoke,$(ALL_SPOKES),format-check-$(spoke))
+FORMAT_FIX_LEAF := $(foreach spoke,$(ALL_SPOKES),format-$(spoke))
 LINT_LEAF := $(foreach spoke,$(ALL_SPOKES),lint-$(spoke))
+LINT_FIX_LEAF := $(foreach spoke,$(ALL_SPOKES),lint-fix-$(spoke))
 TYPE_LEAF := $(foreach spoke,$(ALL_SPOKES),type-check-$(spoke))
+
+.PHONY: $(FORMAT_LEAF) $(FORMAT_FIX_LEAF) $(LINT_LEAF) $(LINT_FIX_LEAF) $(TYPE_LEAF)
 
 # Combined quality checks
 check-all: ## Run format-check, lint, and type-check across the repo
@@ -49,7 +50,7 @@ lint-%:
 # Lint fixes
 lint-fix: ## Run ESLint --fix on all packages
 	@$(call log_info,Auto-fixing lint issues on all packages...)
-	@$(MAKE) $(MAKE_PARALLEL) $(foreach pkg,$(ALL_SPOKES),lint-fix-$(pkg))
+	@$(MAKE) $(MAKE_PARALLEL) $(LINT_FIX_LEAF)
 	@$(call log_success,All lint fixes completed)
 
 lint-fix-%:
@@ -70,7 +71,7 @@ format-check-%:
 # Format fixes
 format: ## Format all packages with Prettier
 	@$(call log_step,Formatting code with Prettier...)
-	@$(MAKE) $(MAKE_PARALLEL) $(foreach pkg,$(ALL_SPOKES),format-$(pkg))
+	@$(MAKE) $(MAKE_PARALLEL) $(FORMAT_FIX_LEAF)
 	@$(call log_success,All packages formatted)
 
 format-%:
