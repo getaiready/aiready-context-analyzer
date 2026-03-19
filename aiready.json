@@ -28,8 +28,8 @@
       "minLines": 5,
       "batchSize": 100,
       "approx": true,
-      "minSharedTokens": 7,
-      "maxCandidatesPerBlock": 100
+      "minSharedTokens": 5,
+      "maxCandidatesPerBlock": 500
     },
     "context-analyzer": {
       "maxContextBudget": 128000,
