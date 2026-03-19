@@ -33,9 +33,9 @@
     },
     "context-analyzer": {
       "maxContextBudget": 128000,
-      "minCohesion": 0.5,
-      "maxDepth": 7,
-      "maxFragmentation": 0.5,
+      "minCohesion": 0.3,
+      "maxDepth": 10,
+      "maxFragmentation": 0.7,
       "focus": "all",
       "includeNodeModules": false
     },
