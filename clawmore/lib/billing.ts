@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import { Resource } from 'sst';
 
 let stripeClient: Stripe | null = null;
 
@@ -38,24 +39,29 @@ export async function createPlatformSubscriptionSession(
     cancelUrl,
   } = opts;
 
+  // Use the linked price ID from SST if it exists
+  const priceId = (Resource as any).PlatformPrice?.id;
+
   return await getStripe().checkout.sessions.create({
     customer: customerId,
     customer_email: customerId ? undefined : userEmail,
     payment_method_types: ['card'],
     line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'ClawMore Managed Platform Subscription',
-            description:
-              '$29.00/mo for managed serverless infrastructure + AI evolution guardrails.',
+      priceId 
+        ? { price: priceId, quantity: 1 }
+        : {
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: 'ClawMore Managed Platform Subscription',
+                description:
+                  '$29.00/mo for managed serverless infrastructure + AI evolution guardrails.',
+              },
+              unit_amount: 2900,
+              recurring: { interval: 'month' },
+            },
+            quantity: 1,
           },
-          unit_amount: 2900,
-          recurring: { interval: 'month' },
-        },
-        quantity: 1,
-      },
     ],
     mode: 'subscription',
     payment_intent_data: {
@@ -66,11 +72,13 @@ export async function createPlatformSubscriptionSession(
     metadata: {
       type: 'platform_subscription',
       coEvolutionOptIn: coEvolutionOptIn ? 'true' : 'false',
+      userEmail,
     },
     subscription_data: {
       description: `ClawMore Managed - ${userEmail}`,
       metadata: {
         coEvolutionOptIn: coEvolutionOptIn ? 'true' : 'false',
+        userEmail,
       },
     },
   });
@@ -133,21 +141,26 @@ export async function createFuelPackCheckout(
   successUrl: string,
   cancelUrl: string
 ) {
+  // Use the linked price ID from SST if it exists
+  const priceId = (Resource as any).FuelPackPrice?.id;
+
   return await getStripe().checkout.sessions.create({
     customer: customerId,
     payment_method_types: ['card'],
     line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'ClawMore AI Fuel Pack ($10.00)',
-            description: 'Adds $10.00 to your pre-paid AI token balance.',
+      priceId 
+        ? { price: priceId, quantity: 1 }
+        : {
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: 'ClawMore AI Fuel Pack ($10.00)',
+                description: 'Adds $10.00 to your pre-paid AI token balance.',
+              },
+              unit_amount: 1000,
+            },
+            quantity: 1,
           },
-          unit_amount: 1000,
-        },
-        quantity: 1,
-      },
     ],
     mode: 'payment',
     success_url: successUrl,
@@ -158,3 +171,4 @@ export async function createFuelPackCheckout(
     },
   });
 }
+

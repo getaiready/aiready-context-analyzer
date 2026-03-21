@@ -16,13 +16,49 @@ export default $config({
       name: 'aiready-clawmore',
       removal: input?.stage === 'production' ? 'retain' : 'remove',
       home: 'aws',
+      providers: {
+        stripe: '0.0.14',
+      },
     };
   },
   async run() {
     const isProd = $app.stage === 'production';
+    
+    // Configure the Stripe provider
+    $config.providers.stripe = {
+      apiKey: process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder',
+    };
+
     const domainName = isProd
       ? 'clawmore.getaiready.dev'
       : `${$app.stage}.clawmore.getaiready.dev`;
+
+    // --- Stripe Products & Prices (IaC) ---
+    
+    // 1. Managed Platform Subscription ($29/mo)
+    const platformProduct = new stripe.Product('PlatformProduct', {
+      name: 'ClawMore Managed Platform',
+      description: 'Fully managed serverless AWS infrastructure with AI evolution.',
+    });
+
+    const platformPrice = new stripe.Price('PlatformPrice', {
+      product: platformProduct.id,
+      unitAmount: 2900,
+      currency: 'usd',
+      recurring: { interval: 'month' },
+    });
+
+    // 2. AI Fuel Pack ($10.00 one-time)
+    const fuelPackProduct = new stripe.Product('FuelPackProduct', {
+      name: 'AI Fuel Pack',
+      description: 'Pre-paid intelligence credits for agent mutations.',
+    });
+
+    const fuelPackPrice = new stripe.Price('FuelPackPrice', {
+      product: fuelPackProduct.id,
+      unitAmount: 1000,
+      currency: 'usd',
+    });
 
     // Storage for ClawMore Managed Platform data
     const table = new sst.aws.Dynamo('ClawMoreTable', {
@@ -164,7 +200,7 @@ export default $config({
           resources: ['*'],
         },
       ],
-      link: [api, leads, table, aiQueue, bus],
+      link: [api, leads, table, aiQueue, bus, platformPrice, fuelPackPrice],
     });
 
     return {
