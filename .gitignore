@@ -91,3 +91,6 @@ vscode-extension/.env
 
 # Ejected projects
 serverlessclaw/
+
+# Analysis output reports
+final-report*.json
