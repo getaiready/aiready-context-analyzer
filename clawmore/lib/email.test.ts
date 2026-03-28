@@ -1,11 +1,22 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-const mockSend = vi.fn();
-
-vi.mock('@aws-sdk/client-ses', () => ({
-  SESClient: vi.fn().mockImplementation(() => ({ send: mockSend })),
-  SendEmailCommand: vi.fn().mockImplementation((args) => args),
+const { mockSend } = vi.hoisted(() => ({
+  mockSend: vi.fn(),
 }));
+
+vi.mock('@aws-sdk/client-ses', () => {
+  class MockSESClient {
+    send = mockSend;
+    constructor() {}
+  }
+  class MockSendEmailCommand {
+    args: any;
+    constructor(args: any) {
+      this.args = args;
+    }
+  }
+  return { SESClient: MockSESClient, SendEmailCommand: MockSendEmailCommand };
+});
 
 import {
   sendApprovalEmail,
@@ -99,7 +110,6 @@ describe('email service', () => {
     it('should not throw when SES send fails', async () => {
       mockSend.mockRejectedValue(new Error('SES down'));
 
-      // Should not throw
       await expect(
         sendApprovalEmail('user@example.com', 'Test')
       ).resolves.not.toThrow();
