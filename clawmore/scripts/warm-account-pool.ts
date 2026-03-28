@@ -12,7 +12,8 @@ import { createServerlessSCP, attachSCPToAccount } from '../lib/aws/governance';
 async function warmPool(targetSize: number = 3) {
   console.log(`[WarmPool] Checking pool status (Target: ${targetSize})...`);
 
-  const adminEmail = process.env.ADMIN_EMAIL || 'caopengau@gmail.com';
+  // Must be the email tied to the master AWS account (aiready org)
+  const adminEmail = process.env.ADMIN_EMAIL || 'caodanju@gmail.com';
 
   // 1. Check existing pool
   // For a robust script, we'd list all accounts and filter by tag.
