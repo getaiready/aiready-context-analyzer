@@ -24,6 +24,10 @@ inputs:
     description: 'Fail on issues of this severity or higher (critical, major, any, none)'
     required: false
     default: 'critical'
+  fail-on-regression:
+    description: 'Fail if the current score is lower than the last recorded baseline on the platform'
+    required: false
+    default: 'false'
   tools:
     description: 'Tools to run (comma-separated). Defaults to all 9 analysis tools.'
     required: false

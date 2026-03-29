@@ -6,15 +6,12 @@
 
 **Block PRs that break your AI context budget.** Run AI readiness analysis in your CI/CD pipeline.
 
-## Why AIReady?
+## Features
 
-AI coding assistants (GitHub Copilot, Cursor, Claude, ChatGPT) struggle with:
-
-- 🔄 **Semantic duplicates** - Same logic written differently, confusing AI
-- 🔗 **Deep import chains** - Exceeding context windows
-- 📛 **Inconsistent naming** - Making code harder for AI to understand
-
-AIReady detects these issues before they reach production.
+- 🛡️ **AI-Regression Guardrail**: Automatically block PRs that reduce your AI leverage. Compares the current score against the platform baseline to ensure your codebase only gets better for AI.
+- 🔄 **Semantic Duplicate Detection**: Identify redundant logic that confuses LLMs.
+- 🔗 **Context Window Optimization**: Map and flatten dependency graphs to fit in context.
+- 📛 **Naming Consistency**: Ensure your codebase is "Agent-Grounded" with predictable naming.
 
 ## Quick Start
 
@@ -31,17 +28,21 @@ jobs:
       - uses: caopengau/aiready-action@v1
         with:
           threshold: '70'
-          fail-on: 'critical'
+          fail-on-regression: 'true' # 🛡️ New: Block if score drops
+          api-key: ${{ secrets.AIREADY_API_KEY }}
 ```
 
 ## Inputs
 
-| Input       | Required | Default                        | Description                                          |
-| ----------- | -------- | ------------------------------ | ---------------------------------------------------- |
-| `directory` | No       | `.`                            | Directory to analyze                                 |
-| `threshold` | No       | `70`                           | Minimum AI readiness score (0-100)                   |
-| `fail-on`   | No       | `critical`                     | Fail on severity: `critical`, `major`, `any`, `none` |
-| `tools`     | No       | `patterns,context,consistency` | Tools to run                                         |
+| Input                | Required | Default    | Description                                                   |
+| -------------------- | -------- | ---------- | ------------------------------------------------------------- |
+| `directory`          | No       | `.`        | Directory to analyze                                          |
+| `threshold`          | No       | `70`       | Minimum AI readiness score (0-100)                            |
+| `fail-on`            | No       | `critical` | Fail on severity: `critical`, `major`, `any`, `none`          |
+| `fail-on-regression` | No       | `false`    | **New:** Block PR if score is lower than platform baseline    |
+| `upload-to-saas`     | No       | `false`    | Upload results to AIReady SaaS for tracking                   |
+| `api-key`            | No       | -          | Required for `fail-on-regression` and `upload-to-saas`        |
+| `tools`              | No       | `all`      | Tools to run (patterns, context, consistency, ai-signal, etc) |
 
 ## Outputs
 

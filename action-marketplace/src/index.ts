@@ -165,12 +165,37 @@ export async function run(): Promise<void> {
     const failOn = core.getInput('fail-on') || 'critical';
     const tools = core.getInput('tools') || 'patterns,context,consistency,ai-signal,grounding,testability,doc-drift,deps,change-amp';
     const uploadToSaas = core.getInput('upload-to-saas') === 'true';
+    const failOnRegression = core.getInput('fail-on-regression') === 'true';
     const apiKey = core.getInput('api-key');
+    const repoId = core.getInput('repo-id');
+    const baseUrl = process.env.AIREADY_SERVER || 'https://platform.getaiready.dev';
 
     core.info('🚀 AIReady Check starting...');
     core.info(`   Directory: ${directory}`);
     core.info(`   Threshold: ${threshold}`);
-    core.info(`   Fail on: ${failOn}`);
+    core.info(`   Fail on: ${failOnLevel}`);
+
+    // Baseline fetching for Platform users
+    let platformBaseline = 0;
+    if (failOnRegression && apiKey) {
+      try {
+        core.info(`\n🔍 Fetching baseline score for regression check...`);
+        const baselineUrl = `${baseUrl}/api/analysis/baseline?repoId=${repoId || ''}`;
+        const response = await fetch(baselineUrl, {
+          headers: { 'Authorization': `Bearer ${apiKey}` },
+        });
+        
+        if (response.ok) {
+          const data: any = await response.json();
+          platformBaseline = data.score || 0;
+          core.info(`✅ Baseline from platform: ${platformBaseline}/100`);
+        } else {
+          core.warning(`⚠️ Failed to fetch baseline: ${response.statusText}. Using manual threshold.`);
+        }
+      } catch (err: any) {
+        core.warning(`⚠️ Baseline error: ${err.message}. Using manual threshold.`);
+      }
+    }
 
     const tmpDir = join(process.cwd(), '.aiready-action');
     if (!existsSync(tmpDir)) {
@@ -219,6 +244,9 @@ export async function run(): Promise<void> {
     if (score < threshold) {
       passed = false;
       failReason = `AI Readiness Score ${score} is below threshold ${threshold}`;
+    } else if (failOnRegression && score < platformBaseline) {
+      passed = false;
+      failReason = `AI Readiness Regression detected: ${score} < baseline ${platformBaseline}. Maintain your AI leverage!`;
     }
 
     if (failOnLevel(failOn, criticalCount, majorCount, totalIssues)) {
