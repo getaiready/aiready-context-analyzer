@@ -171,6 +171,13 @@ release-checks-clawmore: ## Shared checks for clawmore release
 # Version bump targets (4 pattern rules replace 12 individual targets)
 ###############################################################################
 
+# npm spoke version bump targets (packages/*)
+version-%: ## Bump npm spoke version: version-patch|minor|major SPOKE=name
+	$(call require_spoke)
+	@$(call log_step,Bumping @aiready/$(SPOKE) version ($*)...)
+	@npm --prefix $(ROOT_DIR)/packages/$(SPOKE) version $* --no-git-tag-version
+	@$(call log_success,@aiready/$(SPOKE) bumped to $$(node -p "require('$(ROOT_DIR)/packages/$(SPOKE)/package.json').version"))
+
 version-landing-%: ## Bump landing version: version-landing-patch|minor|major
 	@$(call log_step,Bumping landing version ($*)...)
 	@npm --prefix $(LANDING_DIR) version $* --no-git-tag-version
