@@ -168,16 +168,10 @@ release-checks-clawmore: ## Shared checks for clawmore release
 	@$(MAKE) -C $(ROOT_DIR) test-clawmore-contracts
 
 ###############################################################################
-# Version bump targets (4 pattern rules replace 12 individual targets)
+# Version bump targets
 ###############################################################################
 
-# npm spoke version bump targets (packages/*)
-version-%: ## Bump npm spoke version: version-patch|minor|major SPOKE=name
-	$(call require_spoke)
-	@$(call log_step,Bumping @aiready/$(SPOKE) version ($*)...)
-	@npm --prefix $(ROOT_DIR)/packages/$(SPOKE) version $* --no-git-tag-version
-	@$(call log_success,@aiready/$(SPOKE) bumped to $$(node -p "require('$(ROOT_DIR)/packages/$(SPOKE)/package.json').version"))
-
+# App-specific version bump targets (apps/*)
 version-landing-%: ## Bump landing version: version-landing-patch|minor|major
 	@$(call log_step,Bumping landing version ($*)...)
 	@npm --prefix $(LANDING_DIR) version $* --no-git-tag-version
@@ -197,6 +191,13 @@ version-clawmore-%: ## Bump clawmore version: version-clawmore-patch|minor|major
 	@$(call log_step,Bumping clawmore version ($*)...)
 	@npm --prefix $(CLAWMORE_DIR) version $* --no-git-tag-version
 	@$(call log_success,clawmore bumped to $$(node -p "require('$(CLAWMORE_DIR)/package.json').version"))
+
+# npm spoke version bump targets (packages/*)
+version-%: ## Bump npm spoke version: version-patch|minor|major SPOKE=name
+	$(call require_spoke)
+	@$(call log_step,Bumping @aiready/$(SPOKE) version ($*)...)
+	@npm --prefix $(ROOT_DIR)/packages/$(SPOKE) version $* --no-git-tag-version
+	@$(call log_success,@aiready/$(SPOKE) bumped to $$(node -p "require('$(ROOT_DIR)/packages/$(SPOKE)/package.json').version"))
 
 ###############################################################################
 # ClawMore Release
