@@ -127,13 +127,14 @@ export default function SeriesNavigation({
             className="flex-1 group p-6 rounded-3xl bg-cyber-blue/5 border border-cyber-blue/20 hover:border-cyber-blue transition-all flex flex-col items-end text-right gap-2"
           >
             <div className="flex items-center gap-2 text-[10px] font-mono text-cyber-blue uppercase tracking-widest">
-              Series Pulse <ArrowRight className="w-3 h-3" />
+              <span>Series Pulse</span>
+              <ArrowRight className="w-3 h-3" />
             </div>
             <div className="text-sm font-black italic text-white uppercase tracking-tight">
-              Back to Index
+              <span>Back to Index</span>
             </div>
             <div className="text-[8px] font-mono text-cyber-blue/50 uppercase tracking-[0.2em]">
-              All Chronology
+              <span>All Chronology</span>
             </div>
           </Link>
         )}
