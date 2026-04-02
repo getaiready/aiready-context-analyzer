@@ -9,7 +9,7 @@ let stripeClient: Stripe | null = null;
 function getStripe(): Stripe {
   if (!stripeClient) {
     stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: '2025-01-27-acacia' as any,
+      apiVersion: '2026-02-25.clover',
     });
   }
   return stripeClient;
@@ -156,14 +156,31 @@ export async function reportMeteredUsage(
   quantity: number = 1
 ) {
   try {
-    await (getStripe().subscriptionItems as any).createUsageRecord(
-      subscriptionItemId,
-      {
-        quantity,
-        timestamp: Math.floor(Date.now() / 1000),
-        action: 'increment',
-      }
-    );
+    const stripe = getStripe() as Stripe & {
+      subscriptionItems: Stripe['subscriptionItems'] & {
+        createUsageRecord?: (
+          id: string,
+          params: {
+            quantity: number;
+            timestamp: number;
+            action: 'increment';
+          }
+        ) => Promise<unknown>;
+      };
+    };
+
+    const createUsageRecord = stripe.subscriptionItems.createUsageRecord;
+    if (!createUsageRecord) {
+      throw new Error(
+        'Stripe SDK no longer exposes subscriptionItems.createUsageRecord; migrate metered billing to Billing Meter Events.'
+      );
+    }
+
+    await createUsageRecord(subscriptionItemId, {
+      quantity,
+      timestamp: Math.floor(Date.now() / 1000),
+      action: 'increment',
+    });
     log.info({ subscriptionItemId, quantity }, 'Metered usage reported');
   } catch (error) {
     log.error(

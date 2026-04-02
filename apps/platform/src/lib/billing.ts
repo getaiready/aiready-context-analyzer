@@ -9,7 +9,7 @@ let stripe: Stripe | null = null;
 export function getStripe(): Stripe | null {
   if (!stripe && process.env.STRIPE_SECRET_KEY) {
     stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2026-02-25.clover' as any, // Cast as any if the version is not in the types yet
+      apiVersion: '2026-02-25.clover',
     });
   }
   return stripe;

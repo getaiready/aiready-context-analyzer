@@ -48,6 +48,16 @@ export class GraphBuilder {
     this.edgesSet = new Set();
   }
 
+  /** Get all nodes as an array */
+  public getNodes(): FileNode[] {
+    return Array.from(this.nodesMap.values());
+  }
+
+  /** Get all edges */
+  public getEdges(): GraphEdge[] {
+    return this.edges;
+  }
+
   private cleanPath(filePath: string): string {
     if (!filePath) return '';
     // Clean up /tmp/repo-.../ prefix more robustly
@@ -417,7 +427,7 @@ export class GraphBuilder {
       minorIssues = 0,
       infoIssues = 0;
 
-    const nodes = Array.from((builder as any).nodesMap.values()) as FileNode[];
+    const nodes = builder.getNodes();
     for (const node of nodes) {
       // Don't override folder colors with issue colors for now
       const isFolder = builder.edges.some(
@@ -452,13 +462,13 @@ export class GraphBuilder {
 
     return {
       nodes,
-      edges: (builder as any).edges,
+      edges: builder.getEdges(),
       metadata: {
         timestamp: new Date().toISOString(),
         totalFiles: nodes.length,
-        totalDependencies: (builder as any).edges.filter(
-          (e: any) => e.type === 'dependency'
-        ).length,
+        totalDependencies: builder
+          .getEdges()
+          .filter((e) => e.type === 'dependency').length,
         criticalIssues,
         majorIssues,
         minorIssues,
