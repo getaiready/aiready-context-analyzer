@@ -37,28 +37,23 @@ export {
   type CreateInnovationPatternInput,
 } from './services/innovation-service';
 
+// Import service classes
+import { UserService } from './services/user-service';
+import { BillingService } from './services/billing-service';
+import { AccountLifecycleService } from './services/account-lifecycle-service';
+import { AccountManagementService } from './services/account-management-service';
+import { MutationService } from './services/mutation-service';
+import { InnovationService } from './services/innovation-service';
+
 // Export factory function for convenience - creates all services with the client
 export function createServices() {
   return {
-    users: new (require('./services/user-service').UserService)(docClient),
-    billing: new (require('./services/billing-service').BillingService)(
-      docClient
-    ),
-    accountLifecycle:
-      new (require('./services/account-lifecycle-service').AccountLifecycleService)(
-        docClient
-      ),
-    accountManagement:
-      new (require('./services/account-management-service').AccountManagementService)(
-        docClient
-      ),
-    mutations: new (require('./services/mutation-service').MutationService)(
-      docClient
-    ),
-    innovations:
-      new (require('./services/innovation-service').InnovationService)(
-        docClient
-      ),
+    users: new UserService(docClient),
+    billing: new BillingService(docClient),
+    accountLifecycle: new AccountLifecycleService(docClient),
+    accountManagement: new AccountManagementService(docClient),
+    mutations: new MutationService(docClient),
+    innovations: new InnovationService(docClient),
   };
 }
 
@@ -67,23 +62,12 @@ export function createServices() {
  * These re-export the services for existing code compatibility.
  */
 
-const userService = new (require('./services/user-service').UserService)(
-  docClient
-);
-const billingService =
-  new (require('./services/billing-service').BillingService)(docClient);
-const accountLifecycleService =
-  new (require('./services/account-lifecycle-service').AccountLifecycleService)(
-    docClient
-  );
-const accountManagementService =
-  new (require('./services/account-management-service').AccountManagementService)(
-    docClient
-  );
-const mutationService =
-  new (require('./services/mutation-service').MutationService)(docClient);
-const innovationService =
-  new (require('./services/innovation-service').InnovationService)(docClient);
+const userService = new UserService(docClient);
+const billingService = new BillingService(docClient);
+const accountLifecycleService = new AccountLifecycleService(docClient);
+const accountManagementService = new AccountManagementService(docClient);
+const mutationService = new MutationService(docClient);
+const innovationService = new InnovationService(docClient);
 
 export async function ensureUserMetadata(email: string) {
   return userService.ensureUserMetadata(email);
