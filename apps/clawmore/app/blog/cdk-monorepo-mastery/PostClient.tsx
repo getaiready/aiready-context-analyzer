@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'cdk-monorepo-mastery',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'cdk-monorepo-mastery-20',
-        readTime: '5 MIN READ',
+        category: 'Infrastructure',
+        hash: 'cdk-monorepo-mastery',
+        readTime: '5 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

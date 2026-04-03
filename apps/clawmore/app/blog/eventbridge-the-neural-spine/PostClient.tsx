@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'eventbridge-the-neural-spine',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'eventbridge-the-neural-spine-28',
-        readTime: '8 MIN READ',
+        category: 'Architecture',
+        hash: 'eventbridge-the-neural-spine',
+        readTime: '8 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

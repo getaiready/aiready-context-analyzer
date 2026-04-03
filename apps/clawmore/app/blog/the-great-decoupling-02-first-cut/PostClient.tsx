@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'the-great-decoupling-02-first-cut',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'the-great-decoupling-02-first-cut-33',
-        readTime: '8 MIN READ',
+        category: 'Decoupling // Part 02',
+        hash: 'firstcut',
+        readTime: '7 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

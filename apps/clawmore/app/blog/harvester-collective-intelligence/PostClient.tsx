@@ -16,9 +16,9 @@ export default function BlogPost() {
         slug: 'harvester-collective-intelligence',
       }}
       header={{
-        category: 'HUB_SYNC',
+        category: 'Hub Sync',
         hash: 'collective-wins',
-        readTime: '06 MIN READ',
+        readTime: '6 min read',
         title: (
           <>
             The <span className="text-teal-500">Harvester</span>
@@ -30,10 +30,27 @@ export default function BlogPost() {
         image: '/blog-assets/harvester-collective.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'THE HARVESTER',
+          label: 'The Harvester',
           href: '/blog/harvester-collective-intelligence',
+        },
+      ]}
+      faq={[
+        {
+          question: 'What is Knowledge Friction?',
+          answer:
+            'Knowledge Friction occurs when innovations in one repository stay trapped there, while other developers hit the same problems elsewhere in the network.',
+        },
+        {
+          question: 'How does The Harvester protect privacy?',
+          answer:
+            "The Harvester strips all business-specific strings, PII, and sensitive logic, only extracting the 'Unit of Innovation' pattern without compromising privacy.",
+        },
+        {
+          question: 'What are the benefits of enabling The Harvester?',
+          answer:
+            'Contributors get $0 Mutation Tax on all changes and Priority Support with direct access to the core architects.',
         },
       ]}
     >

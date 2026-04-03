@@ -14,9 +14,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-12-future',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_12',
+        category: 'Chronicles // Part 12',
         hash: 'future',
-        readTime: '10 MIN READ',
+        readTime: '10 min read',
         title: (
           <>
             The Future: <br />

@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'account-vending-secret',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'account-vending-secret-22',
-        readTime: '7 MIN READ',
+        category: 'Infrastructure',
+        hash: 'account-vending-secret',
+        readTime: '7 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

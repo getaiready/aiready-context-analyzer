@@ -77,9 +77,9 @@ export default function BlogPost() {
         slug: 'ironclad-autonomy-safety-vpc',
       }}
       header={{
-        category: 'SAFETY_GUARDS',
+        category: 'Safety Guards',
         hash: 'bd95a79',
-        readTime: '06 MIN READ',
+        readTime: '6 min read',
         title: (
           <>
             Ironclad Autonomy: <br />
@@ -92,9 +92,9 @@ export default function BlogPost() {
         image: '/blog-assets/ironclad-autonomy-safety-vpc.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'IRONCLAD AUTONOMY',
+          label: 'Ironclad Autonomy',
           href: '/blog/ironclad-autonomy-safety-vpc',
         },
       ]}

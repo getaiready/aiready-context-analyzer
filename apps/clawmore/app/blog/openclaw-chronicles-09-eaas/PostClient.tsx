@@ -14,9 +14,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-09-eaas',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_09',
+        category: 'Chronicles // Part 09',
         hash: 'eaas',
-        readTime: '08 MIN READ',
+        readTime: '8 min read',
         title: (
           <>
             Evolution-as-a-Service: <br />

@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'co-evolution-win',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'co-evolution-win-16',
-        readTime: '6 MIN READ',
+        category: 'Evolution',
+        hash: 'co-evolution-win',
+        readTime: '6 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

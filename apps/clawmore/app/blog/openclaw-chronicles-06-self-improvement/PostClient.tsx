@@ -63,9 +63,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-06-self-improvement',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_06',
+        category: 'Chronicles // Part 06',
         hash: 'molt',
-        readTime: '09 MIN READ',
+        readTime: '9 min read',
         title: (
           <>
             Self-Improvement: <br />
@@ -78,9 +78,9 @@ export default function BlogPost() {
         image: '/blog-assets/openclaw-chronicles-06-self-improvement.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'SELF-IMPROVEMENT',
+          label: 'Self-Improvement',
           href: '/blog/openclaw-chronicles-06-self-improvement',
         },
       ]}

@@ -51,9 +51,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-03-neural-spine',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_03',
+        category: 'Chronicles // Part 03',
         hash: 'neuralspine',
-        readTime: '06 MIN READ',
+        readTime: '6 min read',
         title: (
           <>
             The Message Router: <br />
@@ -66,9 +66,9 @@ export default function BlogPost() {
         image: '/blog-assets/openclaw-chronicles-03-neural-spine.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'NEURAL SPINE',
+          label: 'Neural Spine',
           href: '/blog/openclaw-chronicles-03-neural-spine',
         },
       ]}

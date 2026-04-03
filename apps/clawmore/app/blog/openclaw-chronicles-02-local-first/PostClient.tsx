@@ -63,9 +63,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-02-local-first',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_02',
+        category: 'Chronicles // Part 02',
         hash: 'localfirst',
-        readTime: '07 MIN READ',
+        readTime: '7 min read',
         title: (
           <>
             OpenClaw 101: <br />
@@ -78,9 +78,9 @@ export default function BlogPost() {
         image: '/blog-assets/openclaw-chronicles-02-local-first.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'LOCAL-FIRST',
+          label: 'Local-First',
           href: '/blog/openclaw-chronicles-02-local-first',
         },
       ]}
@@ -118,7 +118,7 @@ export default function BlogPost() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
           <div className="p-6 border border-white/5 bg-white/[0.02] rounded-sm">
             <Lock className="w-6 h-6 text-cyber-purple mb-4" />
-            <h4 className="font-bold mb-2 uppercase tracking-tight">
+            <h4 className="font-bold mb-2 tracking-tight">
               Zero-Knowledge Storage
             </h4>
             <p className="text-sm text-zinc-400">
@@ -128,9 +128,7 @@ export default function BlogPost() {
           </div>
           <div className="p-6 border border-white/5 bg-white/[0.02] rounded-sm">
             <HardDrive className="w-6 h-6 text-cyber-purple mb-4" />
-            <h4 className="font-bold mb-2 uppercase tracking-tight">
-              Local Inference
-            </h4>
+            <h4 className="font-bold mb-2 tracking-tight">Local Inference</h4>
             <p className="text-sm text-zinc-400">
               Plug in Ollama or LM Studio to run models like Llama 3 or Mistral
               entirely offline. 100% privacy, 0ms latency to the cloud.

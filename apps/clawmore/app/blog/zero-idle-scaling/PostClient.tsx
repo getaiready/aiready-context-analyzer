@@ -45,9 +45,9 @@ export default function BlogPost() {
         slug: 'zero-idle-scaling',
       }}
       header={{
-        category: 'MINIMAL_IA',
+        category: 'Minimal IA',
         hash: 'zero-idle',
-        readTime: '7 MIN READ',
+        readTime: '7 min read',
         title: (
           <>
             $0 Idle: <br />
@@ -62,10 +62,27 @@ export default function BlogPost() {
         image: '/blog-assets/zero-idle-scaling.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'ZERO IDLE SCALING',
+          label: 'Zero Idle Scaling',
           href: '/blog/zero-idle-scaling',
+        },
+      ]}
+      faq={[
+        {
+          question: "What is the 'Waiting Tax' in computing?",
+          answer:
+            "The 'Waiting Tax' is the cost of burning money on uptime to keep servers idling on the off-chance they might be needed, wasting 90%+ of compute resources.",
+        },
+        {
+          question: 'How does ClawMore achieve $0 idle costs?',
+          answer:
+            'By leveraging a pure-serverless backbone where the entire infrastructure—from compute to context memory—dissolves into cold storage when not in use.',
+        },
+        {
+          question: 'What is Permissionless Scaling?',
+          answer:
+            'Permissionless Scaling allows deploying agentic teams for every sub-feature without budget approval since infrastructure costs $0 while idle.',
         },
       ]}
     >

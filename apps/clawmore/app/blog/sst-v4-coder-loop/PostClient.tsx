@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'sst-v4-coder-loop',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'sst-v4-coder-loop-17',
-        readTime: '7 MIN READ',
+        category: 'DevOps',
+        hash: 'sstloop',
+        readTime: '7 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

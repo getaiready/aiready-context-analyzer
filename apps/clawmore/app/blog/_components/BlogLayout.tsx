@@ -7,6 +7,7 @@ import LeadForm from '@/components/LeadForm';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
+import FAQ from '@/components/FAQ';
 import SeriesNavigation from './SeriesNavigation';
 
 interface BlogLayoutProps {
@@ -28,6 +29,7 @@ interface BlogLayoutProps {
     image: string;
   };
   breadcrumbItems?: Array<{ label: string; href: string }>;
+  faq?: Array<{ question: string; answer: string }>;
 }
 
 export default function BlogLayout({
@@ -35,6 +37,7 @@ export default function BlogLayout({
   metadata,
   header,
   breadcrumbItems = [],
+  faq,
 }: BlogLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => setIsModalOpen(false);
@@ -55,7 +58,7 @@ export default function BlogLayout({
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-cyber-purple/30 selection:text-cyber-purple font-sans uppercase">
+    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-cyber-purple/30 selection:text-cyber-purple font-sans">
       <JsonLd data={BLOG_JSON_LD} />
       <Navbar variant="post" />
 
@@ -70,7 +73,7 @@ export default function BlogLayout({
               </div>
               <div className="flex items-center gap-1.5 text-zinc-400 font-mono text-[9px]">
                 <Hash className="w-3 h-3" />
-                <span>HASH: {header.hash}</span>
+                <span>Hash: {header.hash}</span>
               </div>
               <div className="flex items-center gap-1.5 text-zinc-400 font-mono text-[9px]">
                 <Clock className="w-3 h-3" />
@@ -109,6 +112,11 @@ export default function BlogLayout({
               {children}
               <SeriesNavigation currentSlug={metadata.slug} />
             </article>
+            {faq && faq.length > 0 && (
+              <div className="mt-16">
+                <FAQ items={faq} />
+              </div>
+            )}
           </div>
         </div>
       </main>

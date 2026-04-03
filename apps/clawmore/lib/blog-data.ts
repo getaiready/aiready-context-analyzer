@@ -12,17 +12,17 @@ export interface BlogPost {
 }
 
 export const SERIES_ORDER = [
-  'CLAWEAGUE',
-  'DECOUPLING',
-  'CHRONICLES',
-  'MUTATION LOG',
+  'Claweague',
+  'Decoupling',
+  'Chronicles',
+  'Mutation Log',
 ];
 
 export const BLOG_POSTS: BlogPost[] = [
   // --- DECOUPLING SERIES ---
   {
     slug: 'the-great-decoupling-01-audit',
-    series: 'DECOUPLING',
+    series: 'Decoupling',
     episode: 1,
     title: 'The Great Decoupling: Part 1 - Auditing the Monolith',
     excerpt:
@@ -30,12 +30,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 22, 2026',
     readTime: '9 min read',
     hash: 'audit',
-    category: 'DECOUPLING',
+    category: 'Decoupling',
     image: '/blog-assets/the-great-decoupling-01-audit.png',
   },
   {
     slug: 'the-great-decoupling-02-first-cut',
-    series: 'DECOUPLING',
+    series: 'Decoupling',
     episode: 2,
     title: 'The Great Decoupling: Part 2 - The First Cut',
     excerpt:
@@ -43,12 +43,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 24, 2026',
     readTime: '7 min read',
     hash: 'firstcut',
-    category: 'DECOUPLING',
+    category: 'Decoupling',
     image: '/blog-assets/the-great-decoupling-02-first-cut.png',
   },
   {
     slug: 'the-great-decoupling-03-protocol',
-    series: 'DECOUPLING',
+    series: 'Decoupling',
     episode: 3,
     title: 'The Great Decoupling: Part 3 - The Agentic Protocol',
     excerpt:
@@ -56,27 +56,27 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 26, 2026',
     readTime: '8 min read',
     hash: 'protocol',
-    category: 'DECOUPLING',
+    category: 'Decoupling',
     image: '/blog-assets/the-great-decoupling-03-protocol.png',
   },
 
   // --- CHRONICLES SERIES ---
   {
     slug: 'openclaw-chronicles-01-origin-story',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 1,
     title: 'The Origin Story: From Clawdbot to 250k Stars',
     excerpt:
-      'The untold story of OpenClaw’s meteoric rise to 250,000 GitHub stars and the birth of the Lobster Phenomenon.',
+      "The untold story of OpenClaw's meteoric rise to 250,000 GitHub stars and the birth of the Lobster Phenomenon.",
     date: 'Mar 29, 2026',
     readTime: '8 min read',
     hash: 'origin',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-01-origin-story.png',
   },
   {
     slug: 'openclaw-chronicles-02-local-first',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 2,
     title: 'OpenClaw 101: The Local-First Philosophy',
     excerpt:
@@ -84,12 +84,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 02, 2026',
     readTime: '6 min read',
     hash: 'localfirst',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-02-local-first.png',
   },
   {
     slug: 'openclaw-chronicles-03-neural-spine',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 3,
     title: "The Message Router: OpenClaw's Neural Spine",
     excerpt:
@@ -97,12 +97,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 05, 2026',
     readTime: '6 min read',
     hash: 'neuralspine',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-03-neural-spine.png',
   },
   {
     slug: 'openclaw-chronicles-04-agentskills',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 4,
     title: 'AgentSkills: The Standard for Execution',
     excerpt:
@@ -110,12 +110,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 08, 2026',
     readTime: '7 min read',
     hash: 'agentskills',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-04-agentskills.png',
   },
   {
     slug: 'openclaw-chronicles-05-heartbeat',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 5,
     title: 'The Heartbeat: Scheduling Proactive Intelligence',
     excerpt:
@@ -123,12 +123,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 12, 2026',
     readTime: '7 min read',
     hash: 'heartbeat',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-05-heartbeat.png',
   },
   {
     slug: 'openclaw-chronicles-06-self-improvement',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 6,
     title: 'Self-Improvement: When Agents Write Their Own Skills',
     excerpt:
@@ -136,12 +136,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 15, 2026',
     readTime: '9 min read',
     hash: 'molt',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-06-self-improvement.png',
   },
   {
     slug: 'openclaw-chronicles-07-persistence',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 7,
     title: 'Persistence: S3 + DynamoDB State Management',
     excerpt:
@@ -149,12 +149,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 18, 2026',
     readTime: '8 min read',
     hash: 'persistence',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-07-persistence.png',
   },
   {
     slug: 'openclaw-chronicles-08-security',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 8,
     title: 'Ironclad Autonomy: Security & VPC Isolation',
     excerpt:
@@ -162,12 +162,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 22, 2026',
     readTime: '9 min read',
     hash: 'security',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-08-security.png',
   },
   {
     slug: 'openclaw-chronicles-09-eaas',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 9,
     title: 'Evolution-as-a-Service: Managed Hub-and-Spoke',
     excerpt:
@@ -175,12 +175,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 25, 2026',
     readTime: '8 min read',
     hash: 'eaas',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-09-eaas.png',
   },
   {
     slug: 'openclaw-chronicles-10-mutation-tax',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 10,
     title: 'The Mutation Tax: Sustainable AI Economics',
     excerpt:
@@ -188,12 +188,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 28, 2026',
     readTime: '7 min read',
     hash: 'mutationtax',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-10-mutation-tax.png',
   },
   {
     slug: 'openclaw-chronicles-11-sync-architecture',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 11,
     title: 'Sync Architecture: Scaling to a Managed Empire',
     excerpt:
@@ -201,12 +201,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 30, 2026',
     readTime: '8 min read',
     hash: 'clawsync',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-11-sync-architecture.png',
   },
   {
     slug: 'openclaw-chronicles-12-future',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 12,
     title: 'The Future: Beyond the Bridge Pattern',
     excerpt:
@@ -214,12 +214,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'May 02, 2026',
     readTime: '10 min read',
     hash: 'future',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-12-future.png',
   },
   {
     slug: 'openclaw-chronicles-13-evolution-roi',
-    series: 'CHRONICLES',
+    series: 'Chronicles',
     episode: 13,
     title: 'Evolution ROI: Measuring the Infinite Value of Agentic Swarms',
     excerpt:
@@ -227,14 +227,14 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 31, 2026',
     readTime: '9 min read',
     hash: 'roi',
-    category: 'CHRONICLES',
+    category: 'Chronicles',
     image: '/blog-assets/openclaw-chronicles-13-evolution-roi.png',
   },
 
   // --- MUTATION LOG SERIES ---
   {
     slug: 'harvester-collective-intelligence',
-    series: 'MUTATION LOG',
+    series: 'Mutation Log',
     episode: 1,
     title: 'The Harvester: How Your Wins Help Everyone',
     excerpt:
@@ -242,12 +242,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 02, 2026',
     readTime: '6 min read',
     hash: 'collective',
-    category: 'MUTATION LOG',
+    category: 'Mutation Log',
     image: '/blog-assets/harvester-collective.png',
   },
   {
     slug: 'safety-isolation-sst',
-    series: 'MUTATION LOG',
+    series: 'Mutation Log',
     episode: 2,
     title: 'Safety First: Isolating Intelligence with SST',
     excerpt:
@@ -255,12 +255,12 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Apr 01, 2026',
     readTime: '7 min read',
     hash: 'isolation',
-    category: 'MUTATION LOG',
+    category: 'Mutation Log',
     image: '/blog-assets/safety-isolation.png',
   },
   {
     slug: 'zero-idle-scaling',
-    series: 'MUTATION LOG',
+    series: 'Mutation Log',
     episode: 3,
     title: 'Why $0 Idle is the Only Way to Scale',
     excerpt:
@@ -268,7 +268,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 31, 2026',
     readTime: '5 min read',
     hash: 'zeroidle',
-    category: 'MUTATION LOG',
+    category: 'Mutation Log',
     image: '/blog-assets/zero-idle-scaling.png',
   },
 
@@ -281,7 +281,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 28, 2026',
     readTime: '7 min read',
     hash: 'reflector',
-    category: 'AGENTS',
+    category: 'Agents',
     image: '/blog-assets/the-reflector-self-critique.png',
   },
   {
@@ -292,7 +292,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 26, 2026',
     readTime: '8 min read',
     hash: 'ephemeral',
-    category: 'ARCHITECTURE',
+    category: 'Architecture',
     image: '/blog-assets/surviving-void-ephemeral-persistence.png',
   },
   {
@@ -303,7 +303,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 24, 2026',
     readTime: '6 min read',
     hash: 'sstloop',
-    category: 'DEVOPS',
+    category: 'DevOps',
     image: '/blog-assets/sst-ion-coder-loop.png',
   },
   {
@@ -314,7 +314,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 22, 2026',
     readTime: '7 min read',
     hash: 'cdkmono',
-    category: 'INFRASTRUCTURE',
+    category: 'Infrastructure',
     image: '/blog-assets/cdk-monorepo-mastery.png',
   },
   {
@@ -325,7 +325,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 21, 2026',
     readTime: '8 min read',
     hash: 'omnichan',
-    category: 'INTEGRATIONS',
+    category: 'Integrations',
     image: '/blog-assets/omni-channel-ai-gateway.png',
   },
   {
@@ -336,7 +336,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 20, 2026',
     readTime: '6 min read',
     hash: 'bridge',
-    category: 'PATTERNS',
+    category: 'Patterns',
     image: '/blog-assets/bridge-pattern-ephemeral-persistent.png',
   },
   {
@@ -347,7 +347,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 18, 2026',
     readTime: '9 min read',
     hash: 'safety',
-    category: 'SECURITY',
+    category: 'Security',
     image: '/blog-assets/ironclad-autonomy-safety-vpc.png',
   },
   {
@@ -358,7 +358,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 14, 2026',
     readTime: '7 min read',
     hash: 'neuralbus',
-    category: 'ARCHITECTURE',
+    category: 'Architecture',
     image: '/blog-assets/eventbridge-the-neural-spine.png',
   },
   {
@@ -369,7 +369,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 13, 2026',
     readTime: '6 min read',
     hash: 'transient',
-    category: 'ARCHITECTURE',
+    category: 'Architecture',
     image: '/blog-assets/death-of-the-transient-agent.png',
   },
   {
@@ -380,63 +380,63 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 12, 2026',
     readTime: '5 min read',
     hash: '1dollarai',
-    category: 'INFRASTRUCTURE',
+    category: 'Infrastructure',
     image: '/blog-assets/one-dollar-ai-agent.png',
   },
 
   // --- CLAWEAGUE SERIES (TECHNICAL) ---
   {
     slug: 'claweague-technical-part-1-provisioning-pair-programmer',
-    series: 'CLAWEAGUE',
+    series: 'Claweague',
     episode: 1,
     title:
-      'CLAWEAGUE: Part 1 - Provisioning Your Pair Programmer in 60 Seconds',
+      'Claweague: Part 1 - Provisioning Your Pair Programmer in 60 Seconds',
     excerpt:
       'How to automate infrastructure for your AI agents via AWS account vending and SST. Isolation, security, and one-click teammate setup.',
     date: 'Apr 01, 2026',
     readTime: '6 min read',
     hash: 'provision',
-    category: 'PROVISIONING',
+    category: 'Provisioning',
     image: '/blog-images/claweague-technical-part1-cover.png',
   },
   {
     slug: 'claweague-technical-part-2-talking-to-code-mcp',
-    series: 'CLAWEAGUE',
+    series: 'Claweague',
     episode: 2,
     title:
-      'CLAWEAGUE: Part 2 - The MCP Handshake: Talking to Your Code Substrate',
+      'Claweague: Part 2 - The MCP Handshake: Talking to Your Code Substrate',
     excerpt:
       'Using the Model Context Protocol (MCP) to bridge the gap between your IDE and your autonomous colleague. Real-time collaboration without a clipboard.',
     date: 'Apr 01, 2026',
     readTime: '7 min read',
     hash: 'mcp-handshake',
-    category: 'INTEGRATIONS',
+    category: 'Integrations',
     image: '/blog-images/claweague-technical-part2-cover.png',
   },
   {
     slug: 'claweague-technical-part-3-teaching-claw-new-skills',
-    series: 'CLAWEAGUE',
+    series: 'Claweague',
     episode: 3,
-    title: 'CLAWEAGUE: Part 3 - Teaching Your Claw New Skills',
+    title: 'Claweague: Part 3 - Teaching Your Claw New Skills',
     excerpt:
       'How to build and deploy custom domain-specific skills for your agentic teammates. Modular intelligence for high-performance evolution.',
     date: 'Apr 01, 2026',
     readTime: '8 min read',
     hash: 'skills-dev',
-    category: 'DEVELOPMENT',
+    category: 'Development',
     image: '/blog-images/claweague-technical-part3-cover.png',
   },
   {
     slug: 'claweague-technical-part-4-debugging-colleague-relationship',
-    series: 'CLAWEAGUE',
+    series: 'Claweague',
     episode: 4,
-    title: 'CLAWEAGUE: Part 4 - Debugging the Colleague Relationship',
+    title: 'Claweague: Part 4 - Debugging the Colleague Relationship',
     excerpt:
       'Understanding agent reasoning through trace logs and feedback loops. How to align intent with your autonomous silicon teammates.',
     date: 'Apr 01, 2026',
     readTime: '8 min read',
     hash: 'debugging-agents',
-    category: 'OBSERVABILITY',
+    category: 'Observability',
     image: '/blog-images/claweague-technical-part4-cover.png',
   },
 ];

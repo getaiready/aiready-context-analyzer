@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'multi-human-multi-agent-collaboration',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'multi-human-multi-agent-collaboration-37',
-        readTime: '7 MIN READ',
+        category: 'Collaboration',
+        hash: 'multi-human-multi-agent-collaboration',
+        readTime: '7 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

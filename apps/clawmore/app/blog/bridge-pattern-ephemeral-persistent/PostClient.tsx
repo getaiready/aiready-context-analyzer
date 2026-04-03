@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'bridge-pattern-ephemeral-persistent',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'bridge-pattern-ephemeral-persistent-35',
-        readTime: '5 MIN READ',
+        category: 'Patterns',
+        hash: 'bridge-pattern-ephemeral-persistent',
+        readTime: '5 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

@@ -18,9 +18,9 @@ export default function PostClient() {
         slug: 'claweague-technical-part-2-talking-to-code-mcp',
       }}
       header={{
-        category: 'CLAWEAGUE_002',
+        category: 'Claweague // Part 02',
         hash: 'mcp-handshake',
-        readTime: '7 MIN READ',
+        readTime: '7 min read',
         title: (
           <>
             The MCP Handshake: <br />
@@ -33,9 +33,9 @@ export default function PostClient() {
         image: '/blog-images/claweague-technical-part2-cover.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'CLAWEAGUE P2',
+          label: 'Claweague Part 2',
           href: '/blog/claweague-technical-part-2-talking-to-code-mcp',
         },
       ]}

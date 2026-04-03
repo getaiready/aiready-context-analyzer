@@ -10,7 +10,7 @@ export default function PostClient() {
     <BlogLayout
       metadata={{
         title:
-          'CLAWEAGUE: Part 1 - Provisioning Your Pair Programmer in 60 Seconds',
+          'Claweague: Part 1 - Provisioning Your Pair Programmer in 60 Seconds',
         description:
           'How to automate infrastructure for your AI agents via AWS account vending and SST. Isolation, security, and one-click teammate setup.',
         date: '2026-04-01',
@@ -18,9 +18,9 @@ export default function PostClient() {
         slug: 'claweague-technical-part-1-provisioning-pair-programmer',
       }}
       header={{
-        category: 'CLAWEAGUE_001',
+        category: 'Claweague // Part 01',
         hash: 'provision',
-        readTime: '6 MIN READ',
+        readTime: '6 min read',
         title: (
           <>
             Provisioning Your <br />
@@ -33,9 +33,9 @@ export default function PostClient() {
         image: '/blog-images/claweague-technical-part1-cover.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'CLAWEAGUE P1',
+          label: 'Claweague Part 1',
           href: '/blog/claweague-technical-part-1-provisioning-pair-programmer',
         },
       ]}
@@ -125,8 +125,8 @@ export default function PostClient() {
       <section className="mt-16 p-8 bg-zinc-900 border border-white/5 rounded-3xl">
         <div className="flex items-center gap-4 mb-4">
           <Cpu className="text-cyber-green" />
-          <h3 className="text-xl font-bold italic tracking-tighter uppercase">
-            What&apos;s Next?
+          <h3 className="text-xl font-bold italic tracking-tighter">
+            What's next?
           </h3>
         </div>
         <p className="text-zinc-400 normal-case italic">

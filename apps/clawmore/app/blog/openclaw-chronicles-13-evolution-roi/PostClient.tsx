@@ -16,9 +16,9 @@ export default function PostClient() {
         slug: 'openclaw-chronicles-13-evolution-roi',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_13',
+        category: 'Chronicles // Part 13',
         hash: 'roi',
-        readTime: '09 MIN READ',
+        readTime: '9 min read',
         title: (
           <>
             Evolution <span className="text-cyber-blue">ROI</span>: <br />

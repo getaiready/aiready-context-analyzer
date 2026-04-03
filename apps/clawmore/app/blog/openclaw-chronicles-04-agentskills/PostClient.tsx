@@ -63,9 +63,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-04-agentskills',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_04',
+        category: 'Chronicles // Part 04',
         hash: 'agentskills',
-        readTime: '08 MIN READ',
+        readTime: '7 min read',
         title: (
           <>
             AgentSkills: <br />
@@ -78,9 +78,9 @@ export default function BlogPost() {
         image: '/blog-assets/openclaw-chronicles-04-agentskills.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'AGENTSKILLS',
+          label: 'AgentSkills',
           href: '/blog/openclaw-chronicles-04-agentskills',
         },
       ]}
@@ -147,9 +147,7 @@ aws s3 cp {{local_path}} s3://{{bucket_name}}/{{remote_path}}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
           <div className="p-6 border border-white/5 bg-white/[0.02] rounded-sm">
             <ShieldAlert className="w-6 h-6 text-cyber-purple mb-4" />
-            <h4 className="font-bold mb-2 uppercase tracking-tight">
-              Recursive Guards
-            </h4>
+            <h4 className="font-bold mb-2 tracking-tight">Recursive Guards</h4>
             <p className="text-sm text-zinc-400">
               Prevents agents from calling themselves in infinite loops or
               spawning unauthorized sub-processes.
@@ -157,7 +155,7 @@ aws s3 cp {{local_path}} s3://{{bucket_name}}/{{remote_path}}
           </div>
           <div className="p-6 border border-white/5 bg-white/[0.02] rounded-sm">
             <Cpu className="w-6 h-6 text-cyber-purple mb-4" />
-            <h4 className="font-bold mb-2 uppercase tracking-tight">
+            <h4 className="font-bold mb-2 tracking-tight">
               Resource Isolation
             </h4>
             <p className="text-sm text-zinc-400">

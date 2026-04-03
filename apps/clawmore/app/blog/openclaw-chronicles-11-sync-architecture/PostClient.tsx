@@ -14,9 +14,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-11-sync-architecture',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_11',
+        category: 'Chronicles // Part 11',
         hash: 'clawsync',
-        readTime: '08 MIN READ',
+        readTime: '8 min read',
         title: (
           <>
             Sync Architecture: <br />

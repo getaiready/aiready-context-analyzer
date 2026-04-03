@@ -14,9 +14,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-10-mutation-tax',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_10',
+        category: 'Chronicles // Part 10',
         hash: 'mutationtax',
-        readTime: '07 MIN READ',
+        readTime: '7 min read',
         title: (
           <>
             The Mutation Tax: <br />

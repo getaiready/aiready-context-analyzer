@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'mutation-001-smb-swarm',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'mutation-001-smb-swarm-22',
-        readTime: '7 MIN READ',
+        category: 'Mutation Log // Part 01',
+        hash: 'mutation-001-smb-swarm',
+        readTime: '7 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

@@ -42,7 +42,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           className="hover:text-cyber-blue transition-colors flex items-center gap-1"
         >
           <Home className="w-3 h-3" />
-          <span>HOME</span>
+          <span>Home</span>
         </Link>
 
         {items.map((item, index) => (

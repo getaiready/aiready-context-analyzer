@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'surviving-void-ephemeral-persistence',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'surviving-void-ephemeral-persistence-36',
-        readTime: '6 MIN READ',
+        category: 'Architecture',
+        hash: 'surviving-void-ephemeral-persistence',
+        readTime: '6 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

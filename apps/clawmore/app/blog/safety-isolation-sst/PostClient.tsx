@@ -15,9 +15,9 @@ export default function BlogPost() {
         slug: 'safety-isolation-sst',
       }}
       header={{
-        category: 'SEC_ARCH',
+        category: 'Security Architecture',
         hash: 'iron-sandbox',
-        readTime: '07 MIN READ',
+        readTime: '7 min read',
         title: (
           <>
             Safety <span className="text-cyber-purple">First</span>
@@ -29,10 +29,27 @@ export default function BlogPost() {
         image: '/blog-assets/safety-isolation.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'SAFETY ISOLATION SST',
+          label: 'Safety Isolation SST',
           href: '/blog/safety-isolation-sst',
+        },
+      ]}
+      faq={[
+        {
+          question: "What is the 'Waiting Tax' in traditional hosting?",
+          answer:
+            "The 'Waiting Tax' refers to the cost of keeping servers running 24/7 even when they're idle, which wastes 90%+ of compute resources and budget.",
+        },
+        {
+          question: 'How does Account Vending provide isolation?',
+          answer:
+            'Account Vending creates a separate, pristine AWS account for each repository, providing hard boundaries that prevent cross-account traffic and ensure security.',
+        },
+        {
+          question: 'What makes SST v4 ideal for security?',
+          answer:
+            'SST v4 allows security policies to be woven directly into infrastructure code, defining minimum viable permissions for each agent role programmatically.',
         },
       ]}
     >

@@ -56,9 +56,9 @@ export default function BlogPost() {
         slug: 'zero-idle-fleet',
       }}
       header={{
-        category: 'MUTATION_LOG_002',
+        category: 'Mutation Log // Part 02',
         hash: 'zeroidle',
-        readTime: '5 MIN READ',
+        readTime: '5 min read',
         title: (
           <>
             Zero-Idle <br />
@@ -71,8 +71,8 @@ export default function BlogPost() {
         image: '/blog-assets/zero-idle-fleet.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
-        { label: 'ZERO-IDLE FLEET', href: '/blog/zero-idle-fleet' },
+        { label: 'Blog', href: '/blog' },
+        { label: 'Zero-Idle Fleet', href: '/blog/zero-idle-fleet' },
       ]}
     >
       <section>

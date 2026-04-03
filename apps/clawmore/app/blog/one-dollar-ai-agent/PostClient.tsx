@@ -69,9 +69,9 @@ export default function BlogPost() {
         slug: 'one-dollar-ai-agent',
       }}
       header={{
-        category: 'MINIMALIST_ARCHITECT',
+        category: 'Minimalist Architect',
         hash: '1dollarai',
-        readTime: '06 MIN READ',
+        readTime: '6 min read',
         title: (
           <>
             The $1/Month <br />
@@ -84,10 +84,28 @@ export default function BlogPost() {
         image: '/blog-assets/one-dollar-ai-agent.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'THE $1/MONTH AI AGENT',
+          label: 'The $1/Month AI Agent',
           href: '/blog/one-dollar-ai-agent',
+        },
+      ]}
+      faq={[
+        {
+          question: "What is the 'Waiting Tax' in traditional hosting?",
+          answer:
+            "The 'Waiting Tax' is the cost of paying for compute 100% of the time even when the agent is idle, which is extremely inefficient for personal assistants.",
+        },
+        {
+          question: 'How does ClawMore achieve $1/month costs?',
+          answer:
+            "By using AWS Lambda as the primary entry point and AWS Fargate on-demand for the reasoning engine, achieving a true 'Scale-to-Zero' state.",
+        },
+        {
+          question:
+            'What is the difference between Co-Evolution and Private Divergence?',
+          answer:
+            "Co-Evolution syncs your agent's unique mutations back to the hub for free, while Private Divergence applies a small fee per mutation for isolated infrastructure.",
         },
       ]}
     >

@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'department-claws',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'department-claws-16',
-        readTime: '6 MIN READ',
+        category: 'Architecture',
+        hash: 'department-claws',
+        readTime: '6 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

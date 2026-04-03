@@ -72,11 +72,11 @@ export default function SeriesNavigation({
             href={`/blog/${prevPost.slug}`}
             className="flex-1 group p-6 rounded-3xl bg-zinc-900/30 border border-white/5 hover:border-cyber-blue/30 transition-all flex flex-col items-start gap-2"
           >
-            <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-cyber-blue transition-colors">
+            <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500 tracking-widest group-hover:text-cyber-blue transition-colors">
               <ArrowLeft className="w-3 h-3" />
-              <span>Previous {prevPost.series ? 'Episode' : 'Post'}</span>
+              <span>Previous {prevPost.series ? 'episode' : 'post'}</span>
             </div>
-            <div className="text-sm font-black italic text-white uppercase tracking-tight group-hover:translate-x-1 transition-transform">
+            <div className="text-sm font-black italic text-white tracking-tight group-hover:translate-x-1 transition-transform">
               {prevPost.title}
             </div>
             {prevPost.series && (
@@ -87,11 +87,11 @@ export default function SeriesNavigation({
           </Link>
         ) : (
           <div className="flex-1 p-6 rounded-3xl border border-white/[0.02] flex flex-col items-start gap-2 opacity-20 grayscale cursor-not-allowed">
-            <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-              <span>Beginning of Story</span>
+            <div className="text-[10px] font-mono text-zinc-500 tracking-widest">
+              <span>Beginning of story</span>
             </div>
-            <div className="text-sm font-black italic text-white uppercase tracking-tight">
-              <span>No Previous Content</span>
+            <div className="text-sm font-black italic text-white tracking-tight">
+              <span>No previous content</span>
             </div>
           </div>
         )}
@@ -108,11 +108,11 @@ export default function SeriesNavigation({
             href={`/blog/${nextPost.slug}`}
             className="flex-1 group p-6 rounded-3xl bg-zinc-900/30 border border-white/5 hover:border-cyber-blue/30 transition-all flex flex-col items-end text-right gap-2"
           >
-            <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-cyber-blue transition-colors">
-              <span>Next {nextPost.series ? 'Episode' : 'Post'}</span>
+            <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-500 tracking-widest group-hover:text-cyber-blue transition-colors">
+              <span>Next {nextPost.series ? 'episode' : 'post'}</span>
               <ArrowRight className="w-3 h-3" />
             </div>
-            <div className="text-sm font-black italic text-white uppercase tracking-tight group-hover:-translate-x-1 transition-transform">
+            <div className="text-sm font-black italic text-white tracking-tight group-hover:-translate-x-1 transition-transform">
               {nextPost.title}
             </div>
             {nextPost.series && (
@@ -126,15 +126,15 @@ export default function SeriesNavigation({
             href="/blog"
             className="flex-1 group p-6 rounded-3xl bg-cyber-blue/5 border border-cyber-blue/20 hover:border-cyber-blue transition-all flex flex-col items-end text-right gap-2"
           >
-            <div className="flex items-center gap-2 text-[10px] font-mono text-cyber-blue uppercase tracking-widest">
-              <span>Series Pulse</span>
+            <div className="flex items-center gap-2 text-[10px] font-mono text-cyber-blue tracking-widest">
+              <span>Series pulse</span>
               <ArrowRight className="w-3 h-3" />
             </div>
-            <div className="text-sm font-black italic text-white uppercase tracking-tight">
-              <span>Back to Index</span>
+            <div className="text-sm font-black italic text-white tracking-tight">
+              <span>Back to index</span>
             </div>
-            <div className="text-[8px] font-mono text-cyber-blue/50 uppercase tracking-[0.2em]">
-              <span>All Chronology</span>
+            <div className="text-[8px] font-mono text-cyber-blue/50 tracking-[0.2em]">
+              <span>All chronology</span>
             </div>
           </Link>
         )}

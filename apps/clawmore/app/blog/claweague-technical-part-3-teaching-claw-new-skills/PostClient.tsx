@@ -17,9 +17,9 @@ export default function PostClient() {
         slug: 'claweague-technical-part-3-teaching-claw-new-skills',
       }}
       header={{
-        category: 'CLAWEAGUE_003',
+        category: 'Claweague // Part 03',
         hash: 'skills-dev',
-        readTime: '8 MIN READ',
+        readTime: '8 min read',
         title: (
           <>
             Teaching Your Claw <br />
@@ -32,9 +32,9 @@ export default function PostClient() {
         image: '/blog-images/claweague-technical-part3-cover.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'CLAWEAGUE P3',
+          label: 'Claweague Part 3',
           href: '/blog/claweague-technical-part-3-teaching-claw-new-skills',
         },
       ]}

@@ -14,9 +14,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-08-security',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_08',
+        category: 'Chronicles // Part 08',
         hash: 'security',
-        readTime: '09 MIN READ',
+        readTime: '9 min read',
         title: (
           <>
             Ironclad Autonomy: <br />

@@ -71,9 +71,9 @@ export default function BlogPost() {
         slug: 'death-of-the-transient-agent',
       }}
       header={{
-        category: 'CORE_ENGINE',
+        category: 'Core Engine',
         hash: '5086da9',
-        readTime: '06 MIN READ',
+        readTime: '6 min read',
         title: (
           <>
             The Death of the <br />
@@ -86,10 +86,27 @@ export default function BlogPost() {
         image: '/blog-assets/death-of-the-transient-agent.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'THE DEATH OF THE TRANSIENT AGENT',
+          label: 'The Death of the Transient Agent',
           href: '/blog/death-of-the-transient-agent',
+        },
+      ]}
+      faq={[
+        {
+          question: 'What is the Context Window Trap?',
+          answer:
+            'The Context Window Trap occurs when AI-generated infrastructure context exists only in volatile chat memory and disappears when the session ends.',
+        },
+        {
+          question: 'What is Mutable Logic State?',
+          answer:
+            'Mutable Logic State treats infrastructure as persistent code that can be versioned, mutated, and committed directly to source control rather than existing as ephemeral advice.',
+        },
+        {
+          question: 'How does ClawMore differ from traditional AI assistants?',
+          answer:
+            'ClawMore commits infrastructure changes directly to Git, creating a recursive loop where the agent becomes the infrastructure rather than just managing it.',
         },
       ]}
     >

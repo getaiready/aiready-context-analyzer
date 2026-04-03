@@ -63,9 +63,9 @@ export default function BlogPost() {
         slug: 'openclaw-chronicles-01-origin-story',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // PART_01',
+        category: 'Chronicles // Part 01',
         hash: 'origin',
-        readTime: '08 MIN READ',
+        readTime: '8 min read',
         title: (
           <>
             The Origin Story: <br />
@@ -78,10 +78,27 @@ export default function BlogPost() {
         image: '/blog-assets/openclaw-chronicles-01-origin-story.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'ORIGIN STORY',
+          label: 'Origin Story',
           href: '/blog/openclaw-chronicles-01-origin-story',
+        },
+      ]}
+      faq={[
+        {
+          question: 'What is OpenClaw?',
+          answer:
+            'OpenClaw is a serverless agentic AI platform that allows you to run AI agents on your own hardware without sending data to the cloud.',
+        },
+        {
+          question: 'How did OpenClaw get 250k stars?',
+          answer:
+            'OpenClaw reached 250k stars through its local-first philosophy and privacy-focused approach, resonating with developers who want control over their data.',
+        },
+        {
+          question: 'What is the Lobster Phenomenon?',
+          answer:
+            'The Lobster Phenomenon represents the resilient, hard-shelled nature of the OpenClaw ecosystem and its decentralized approach to AI.',
         },
       ]}
     >

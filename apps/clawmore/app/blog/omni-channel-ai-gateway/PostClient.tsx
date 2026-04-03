@@ -13,9 +13,9 @@ export default function BlogPost() {
         slug: 'omni-channel-ai-gateway',
       }}
       header={{
-        category: 'OPENCLAW_CHRONICLES // EVOLUTION',
-        hash: 'omni-channel-ai-gateway-23',
-        readTime: '8 MIN READ',
+        category: 'Integrations',
+        hash: 'omni-channel-ai-gateway',
+        readTime: '8 min read',
         title: 'OpenClaw Chronicles',
         subtitle: 'Evolving the Future of Agents',
         description: 'Evolving AI Agents',

@@ -17,9 +17,9 @@ export default function PostClient() {
         slug: 'claweague-technical-part-4-debugging-colleague-relationship',
       }}
       header={{
-        category: 'CLAWEAGUE_004',
+        category: 'Claweague // Part 04',
         hash: 'debugging-agents',
-        readTime: '8 MIN READ',
+        readTime: '8 min read',
         title: (
           <>
             Debugging the <br />
@@ -32,9 +32,9 @@ export default function PostClient() {
         image: '/blog-images/claweague-technical-part4-cover.png',
       }}
       breadcrumbItems={[
-        { label: 'BLOG', href: '/blog' },
+        { label: 'Blog', href: '/blog' },
         {
-          label: 'CLAWEAGUE P4',
+          label: 'Claweague Part 4',
           href: '/blog/claweague-technical-part-4-debugging-colleague-relationship',
         },
       ]}
