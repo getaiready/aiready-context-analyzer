@@ -202,12 +202,12 @@ release-platform: verify-aws-account ## Release platform to production: TYPE=pat
 
 release-vscode: ## Release VS Code extension: TYPE=patch|minor|major
 	@$(validate_type)
-	@$(call maybe_bump_app_version,$(EXTENSION_DIR),vscode-extension,$(TYPE),vscode-extension)
-	@$(call commit_and_tag_app,$(EXTENSION_DIR),vscode-extension,vscode-extension,vscode-extension)
+	@$(call maybe_bump_version,$(EXTENSION_DIR),vscode-extension,$(TYPE),vscode-extension)
+	@$(call commit_and_tag,$(EXTENSION_DIR),vscode-extension,vscode-extension)
 	@$(call run_if_enabled,$(RELEASE_BUILD),cd $(EXTENSION_DIR) && pnpm build,vscode build)
 	@$(call run_if_enabled,$(RELEASE_PUBLISH),$(MAKE) -C $(ROOT_DIR) publish-vscode TYPE=$(TYPE) && $(MAKE) -C $(ROOT_DIR) publish-vscode-sync PUBLIC_OWNER=$(PUBLIC_OWNER) && $(MAKE) -C $(ROOT_DIR) publish-action-sync PUBLIC_OWNER=$(PUBLIC_OWNER) OWNER=$(OWNER),publish vscode)
 	@$(call run_if_enabled,$(RELEASE_DISTRIBUTION),$(MAKE) -C $(ROOT_DIR) update-distribution,distribution channels)
-	@$(call run_if_enabled,$(RELEASE_PUSH),$(MAKE) sync,sync and push)
+	@$(call run_if_enabled,$(RELEASE_PUSH),$(MAKE) -C $(ROOT_DIR) sync,sync and push)
 	@$(call log_success,Release finished for VS Code extension)
 
 ###############################################################################
@@ -237,11 +237,11 @@ release-one: ## Release one npm spoke: SPOKE=name TYPE=patch|minor|major
 	$(call require_spoke)
 	@$(validate_type)
 	@$(MAKE) -C $(ROOT_DIR) $(call bump_target_for_type,$(TYPE)) SPOKE=$(SPOKE)
-	@$(call commit_and_tag,packages/$(SPOKE),$(SPOKE),$(SPOKE))
+	@$(call commit_and_tag,$(ROOT_DIR)/packages/$(SPOKE),$(SPOKE),$(SPOKE))
 	@$(call run_if_enabled,$(RELEASE_PRECHECKS),$(MAKE) -C $(ROOT_DIR) release-checks-spoke SPOKE=$(SPOKE),spoke checks)
 	@$(call run_if_enabled,$(RELEASE_PUBLISH),$(MAKE) -C $(ROOT_DIR) npm-publish SPOKE=$(SPOKE) && $(MAKE) -C $(ROOT_DIR) publish SPOKE=$(SPOKE) PUBLIC_OWNER=$(PUBLIC_OWNER),publish spoke)
 	@$(call run_if_enabled,$(RELEASE_DISTRIBUTION),$(MAKE) -C $(ROOT_DIR) update-distribution,distribution channels)
-	@$(call run_if_enabled,$(RELEASE_PUSH),$(MAKE) sync,sync and push)
+	@$(call run_if_enabled,$(RELEASE_PUSH),$(MAKE) -C $(ROOT_DIR) sync,sync and push)
 	@$(call log_success,Release finished for @aiready/$(SPOKE))
 
 # Build+test once, then version-bump -> publish in order: core -> middle -> cli
