@@ -4,6 +4,7 @@ import type {
   ContextAnalyzerOptions,
   FileClassification,
 } from './types';
+import { calculateEnhancedCohesion } from './metrics';
 import { resolveOptions } from './options-resolver';
 
 /**
@@ -15,12 +16,11 @@ import { resolveOptions } from './options-resolver';
  * @param options - Additional options for cohesion calculation
  * @returns Cohesion score between 0 and 1
  */
-export async function calculateCohesion(
+export function calculateCohesion(
   exports: any[],
   filePath?: string,
   options?: any
-): Promise<number> {
-  const { calculateEnhancedCohesion } = await import('./metrics');
+): number {
   return calculateEnhancedCohesion(exports, filePath, options);
 }
 
