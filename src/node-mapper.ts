@@ -3,7 +3,6 @@ import type {
   DependencyGraph,
   ModuleCluster,
   ContextAnalysisResult,
-  FileClassification,
 } from './types';
 import {
   calculateImportDepth,
